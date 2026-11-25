@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://d2gd7sam4qdmm"]
+
+[ext_resource type="Script" uid="uid://dvia84f6syys4" path="res://minigame_triggering/scripts/main_scene_controller.gd" id="1_wd80y"]
+[ext_resource type="PackedScene" uid="uid://cg02oboh4nlrh" path="res://angel_prototyp/scenes/map.tscn" id="1_xa8xg"]
+[ext_resource type="PackedScene" uid="uid://cv5n65aiqjnwf" path="res://game_over_ui.tscn" id="2_8djwq"]
+[ext_resource type="Resource" uid="uid://ssxjji4xxto2" path="res://minigame_setups/plastic_throwing_setup.tres" id="2_70hfj"]
+[ext_resource type="PackedScene" uid="uid://yoh4w7nq5mv" path="res://minigame_triggering/scenes/minigames.tscn" id="2_wd80y"]
+[ext_resource type="PackedScene" uid="uid://dfoyb5rgaxmu2" path="res://game_won_ui.tscn" id="3_76tyq"]
+[ext_resource type="Resource" uid="uid://cokh3p56w1btj" path="res://minigame_setups/odd_one_out_setup.tres" id="3_mntiy"]
+[ext_resource type="Resource" uid="uid://c1gj8c2ty174g" path="res://minigame_setups/worm_setup.tres" id="4_rh8gu"]
+[ext_resource type="Resource" uid="uid://6w2icbyrj1i0" path="res://minigame_setups/search_setup.tres" id="5_mntiy"]
+[ext_resource type="Resource" uid="uid://c0sr27pdbniwl" path="res://minigame_setups/riddle_setup.tres" id="8_76tyq"]
+
+[sub_resource type="GDScript" id="GDScript_wd80y"]
+resource_name = "MinigameTestButton"
+script/source = "extends Button
+
+
+@export var minigame: BaseMinigameSetup
+@export_range(1, 3, 1) var fisher_nr: int = 1
+@export var decay: Enums.Decay
+
+
+func _ready() -> void:
+	pressed.connect(_on_pressed_test)
+
+func _on_pressed_test() -> void:
+	var mods = ObjectMinigameModifiers.new(decay, fisher_nr)
+	MinigamesManager.Instance.start_new(minigame, mods)
+"
+
+[node name="Main Scene" type="Node" node_paths=PackedStringArray("minigames_manager", "fishing_scene", "test_ui", "state_ui")]
+process_mode = 3
+script = ExtResource("1_wd80y")
+minigames_manager = NodePath("Minigames")
+fishing_scene = NodePath("FishingMap")
+test_ui = NodePath("Test UI")
+state_ui = NodePath("StateUIContainer")
+_game_over_ui_prefab = ExtResource("2_8djwq")
+_game_won_ui_prefab = ExtResource("3_76tyq")
+
+[node name="Test UI" type="CanvasLayer" parent="."]
+
+[node name="TestStartMinigame" type="Button" parent="Test UI"]
+offset_left = 25.0
+offset_top = 21.0
+offset_right = 152.0
+offset_bottom = 52.0
+text = "Start Werfen Minigame"
+alignment = 0
+script = SubResource("GDScript_wd80y")
+minigame = ExtResource("2_70hfj")
+
+[node name="TestStartMinigame2" type="Button" parent="Test UI"]
+offset_left = 25.0
+offset_top = 58.0
+offset_right = 233.0
+offset_bottom = 89.0
+text = "Start Odd One Out Minigame"
+alignment = 0
+script = SubResource("GDScript_wd80y")
+minigame = ExtResource("3_mntiy")
+decay = 1
+
+[node name="TestStartMinigame3" type="Button" parent="Test UI"]
+offset_left = 25.0
+offset_top = 97.0
+offset_right = 233.0
+offset_bottom = 128.0
+text = "Start Würmer Minigame"
+alignment = 0
+script = SubResource("GDScript_wd80y")
+minigame = ExtResource("4_rh8gu")
+
+[node name="TestStartMinigame4" type="Button" parent="Test UI"]
+offset_left = 25.0
+offset_top = 138.0
+offset_right = 233.0
+offset_bottom = 169.0
+text = "Start Sandsuch Minigame"
+alignment = 0
+script = SubResource("GDScript_wd80y")
+minigame = ExtResource("5_mntiy")
+
+[node name="TestStartMinigame5" type="Button" parent="Test UI"]
+offset_left = 25.0
+offset_top = 180.0
+offset_right = 233.0
+offset_bottom = 211.0
+text = "Start Rätsel Minigame"
+alignment = 0
+script = SubResource("GDScript_wd80y")
+minigame = ExtResource("8_76tyq")
+
+[node name="FishingMap" parent="." instance=ExtResource("1_xa8xg")]
+
+[node name="Minigames" parent="." instance=ExtResource("2_wd80y")]
+
+[node name="StateUIContainer" type="CanvasLayer" parent="."]

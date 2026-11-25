@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj568sqtbfmfn"]
+
+[ext_resource type="PackedScene" uid="uid://ce6sxhs3bvoyp" path="res://angel_prototyp/scenes/fishable_objects/fishable_object_1x1.tscn" id="1_k5xqs"]
+[ext_resource type="Resource" uid="uid://c1gj8c2ty174g" path="res://minigame_setups/worm_setup.tres" id="2_do3n0"]
+[ext_resource type="Texture2D" uid="uid://c2ic5yt6uxvsa" path="res://angel_prototyp/assets new/rechen garten.png" id="3_mbal1"]
+[ext_resource type="Texture2D" uid="uid://65ah0ijlt5n2" path="res://angel_prototyp/assets new/rechen garten2.png" id="4_mbal1"]
+[ext_resource type="Texture2D" uid="uid://onh122yu3erb" path="res://angel_prototyp/assets new/rechen garten3.png" id="5_orj8w"]
+
+[node name="Fishable Rake 1x1" instance=ExtResource("1_k5xqs")]
+minigame = ExtResource("2_do3n0")
+decay_level_sprites = Array[Texture]([ExtResource("3_mbal1"), ExtResource("4_mbal1"), ExtResource("5_orj8w")])
+puddle_color = Color(0.482353, 0.588235, 0.490196, 1)
+
+[node name="ObjectSprite" parent="." index="0"]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("3_mbal1")
+region_enabled = false

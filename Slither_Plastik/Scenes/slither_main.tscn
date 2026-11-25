@@ -1,0 +1,146 @@
+[gd_scene load_steps=14 format=3 uid="uid://0u4bplylkx8q"]
+
+[ext_resource type="Script" uid="uid://coj2betu2thmv" path="res://Slither_Plastik/Scripts/Spawning_Food.gd" id="1_hnj1j"]
+[ext_resource type="PackedScene" uid="uid://bbmkuan4hi34i" path="res://Slither_Plastik/Scenes/food.tscn" id="2_urmaj"]
+[ext_resource type="PackedScene" uid="uid://cq8bnr8gmim0d" path="res://Slither_Plastik/Scenes/plastic.tscn" id="3_qbqex"]
+[ext_resource type="PackedScene" uid="uid://cp51brwbn0gi0" path="res://Slither_Plastik/Scenes/joystick.tscn" id="4_obfcm"]
+[ext_resource type="PackedScene" uid="uid://dgmypken6in0q" path="res://Slither_Plastik/Scenes/Worm.tscn" id="5_jxkdb"]
+[ext_resource type="PackedScene" uid="uid://ddqn7dshdqmf0" path="res://Slither_Plastik/Scenes/ground_texture.tscn" id="6_i38q7"]
+[ext_resource type="PackedScene" uid="uid://8yubmtvbjfax" path="res://Slither_Plastik/Scenes/wall.tscn" id="7_e25qw"]
+[ext_resource type="Script" uid="uid://bmyf4qcr6tyw2" path="res://Slither_Plastik/Scripts/score_slither.gd" id="8_qbqex"]
+[ext_resource type="Script" uid="uid://c1xg3nbfg4qlr" path="res://Mikroplastik werfen/Scripts/timer_label.gd" id="9_obfcm"]
+[ext_resource type="Script" uid="uid://lquqtutw2i17" path="res://Mikroplastik werfen/Scripts/game_timer.gd" id="10_jxkdb"]
+[ext_resource type="Script" uid="uid://dynaqeo3d7ec8" path="res://local_score.gd" id="11_i38q7"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c2ngl"]
+scenes/1/scene = ExtResource("7_e25qw")
+scenes/2/scene = ExtResource("3_qbqex")
+scenes/3/scene = ExtResource("2_urmaj")
+
+[sub_resource type="TileSet" id="TileSet_tegad"]
+tile_size = Vector2i(80, 80)
+sources/0 = SubResource("TileSetScenesCollectionSource_c2ngl")
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("tilemap", "camera", "score_label", "time_label", "score_manager", "timer")]
+script = ExtResource("1_hnj1j")
+tilemap = NodePath("TileMap")
+food_scene = ExtResource("2_urmaj")
+plastic_scene = ExtResource("3_qbqex")
+camera = NodePath("Camera2D")
+score_label = NodePath("Camera2D/CanvasLayer/ScoreLabel")
+time_label = NodePath("Camera2D/CanvasLayer/TimerLabel")
+score_manager = NodePath("LocalScore")
+timer = NodePath("Camera2D/CanvasLayer/TimerLabel/Timer_round")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_tegad")
+collision_visibility_mode = 2
+format = 2
+layer_0/tile_data = PackedInt32Array(15, 0, 65536, 65551, 0, 65536, 131087, 0, 65536, 196623, 0, 65536, 262159, 0, 65536, 327695, 0, 65536, 393231, 0, 65536, 458767, 0, 65536, 524303, 0, 65536, 0, 0, 65536, 65536, 0, 65536, 131072, 0, 65536, 196608, 0, 65536, 262144, 0, 65536, 327680, 0, 65536, 393216, 0, 65536, 458752, 0, 65536, 524288, 0, 65536, 524289, 0, 65536, 524290, 0, 65536, 524291, 0, 65536, 524292, 0, 65536, 524293, 0, 65536, 524294, 0, 65536, 524295, 0, 65536, 524296, 0, 65536, 524297, 0, 65536, 524298, 0, 65536, 524299, 0, 65536, 524300, 0, 65536, 524301, 0, 65536, 524302, 0, 65536, 458753, 0, 65536, 458754, 0, 65536, 458755, 0, 65536, 458756, 0, 65536, 458757, 0, 65536, 458758, 0, 65536, 458759, 0, 65536, 458760, 0, 65536, 458761, 0, 65536, 458762, 0, 65536, 458763, 0, 65536, 458764, 0, 65536, 458765, 0, 65536, 458766, 0, 65536, 1, 0, 65536, 14, 0, 65536, 4, 0, 65536, 5, 0, 65536, 6, 0, 65536, 7, 0, 65536, 8, 0, 65536, 9, 0, 65536, 10, 0, 65536, 11, 0, 65536, 196615, 0, 65536, 196616, 0, 65536, 131074, 0, 65536, 196610, 0, 65536, 131075, 0, 65536, 131076, 0, 65536, 196619, 0, 131072, 65537, 0, 131072, 65542, 0, 131072, 393229, 0, 131072, 196611, 0, 196608, 262154, 0, 196608, 65544, 0, 196608, 196621, 0, 65536, 131083, 0, 65536, 131084, 0, 65536, 131085, 0, 65536, 196622, 0, 196608, 262150, 0, 196608, 327692, 0, 65536, 327683, 0, 65536, 2, 0, 65536, 3, 0, 65536, 12, 0, 65536, 13, 0, 65536, 327681, 0, 131072, 720896, 0, 65536, 786432, 0, 65536, 851968, 0, 65536, 917504, 0, 65536, 983040, 0, 65536, 1048576, 0, 65536, 1114112, 0, 65536, 1179648, 0, 65536, 1245184, 0, 65536, 720897, 0, 65536, 720898, 0, 65536, 720899, 0, 65536, 720900, 0, 65536, 720901, 0, 65536, 720902, 0, 65536, 720903, 0, 65536, 720904, 0, 65536, 720905, 0, 65536, 720906, 0, 65536, 720907, 0, 65536, 720908, 0, 65536, 720909, 0, 65536, 720910, 0, 65536, 720911, 0, 65536, 720912, 0, 65536, 720913, 0, 65536, 1310720, 0, 65536, 1376256, 0, 65536, 1376257, 0, 65536, 1376258, 0, 65536, 1376259, 0, 65536, 1376260, 0, 65536, 1376261, 0, 65536, 1376262, 0, 65536, 1376263, 0, 65536, 1376264, 0, 65536, 1376265, 0, 65536, 1376266, 0, 65536, 1376267, 0, 65536, 1376268, 0, 65536, 1376269, 0, 65536, 1376270, 0, 65536, 1376271, 0, 65536, 1376272, 0, 65536, 1376273, 0, 65536, 720914, 0, 65536, 786451, 0, 65536, 851987, 0, 65536, 917523, 0, 65536, 983059, 0, 65536, 1048595, 0, 65536, 1376274, 0, 65536, 720915, 0, 65536, 1114131, 0, 65536, 1179667, 0, 65536, 1245203, 0, 65536, 1310739, 0, 65536, 1376275, 0, 65536, 1441792, 0, 65536, 1441793, 0, 65536, 1441794, 0, 65536, 1441795, 0, 65536, 1441796, 0, 65536, 1441797, 0, 65536, 1441798, 0, 65536, 1441799, 0, 65536, 1441800, 0, 65536, 1441801, 0, 65536, 1441802, 0, 65536, 1441803, 0, 65536, 1441804, 0, 65536, 1441805, 0, 65536, 1441806, 0, 65536, 1441807, 0, 65536, 1441808, 0, 65536, 1441809, 0, 65536, 1441810, 0, 65536, 1441811, 0, 65536, 1245193, 0, 65536, 1245194, 0, 65536, 1179658, 0, 65536, 1179657, 0, 65536, 1114122, 0, 65536, 1114121, 0, 65536, 917507, 0, 65536, 983043, 0, 65536, 1048579, 0, 65536, 917510, 0, 65536, 1245186, 0, 65536, 1245201, 0, 65536, 1048592, 0, 65536, 983056, 0, 65536, 917520, 0, 65536, 851974, 0, 65536, 851975, 0, 65536, 851980, 0, 65536, 851981, 0, 65536, 917517, 0, 65536, 983049, 0, 65536, 983050, 0, 65536, 1114117, 0, 131072, 1048586, 0, 131072, 786449, 0, 131072, 1179665, 0, 131072, 786436, 0, 131072, 1179650, 0, 131072, 851978, 0, 131072, 983054, 0, 131072, 851969, 0, 196608, 917509, 0, 196608, 983048, 0, 196608, 786446, 0, 196608, 851985, 0, 196608, 1048593, 0, 196608, 1245202, 0, 196608, 1114114, 0, 196608, 786431, 0, 65536, 851967, 0, 65536, 917503, 0, 65536, 983039, 0, 65536, 1048575, 0, 65536, 1114111, 0, 65536, 1179647, 0, 65536, 1310719, 0, 65536, 1376255, 0, 65536, 1441791, 0, 65536, 1245183, 0, 65536, 1507327, 0, 65536, 720916, 0, 65536, 786452, 0, 65536, 851988, 0, 65536, 1114132, 0, 65536, 1179668, 0, 65536, 1245204, 0, 65536, 1310740, 0, 65536, 1376276, 0, 65536, 1441812, 0, 65536, 1048596, 0, 65536, 983060, 0, 65536, 917524, 0, 65536, 1769472, 0, 65536, 1835008, 0, 65536, 1900544, 0, 65536, 1966080, 0, 65536, 2031616, 0, 65536, 2097152, 0, 65536, 2162688, 0, 65536, 2228224, 0, 65536, 2293760, 0, 65536, 2359296, 0, 65536, 2424832, 0, 65536, 2490368, 0, 65536, 2555904, 0, 65536, 1769473, 0, 65536, 1835009, 0, 65536, 1900545, 0, 65536, 1966081, 0, 65536, 2031617, 0, 65536, 2097153, 0, 65536, 2162689, 0, 65536, 2228225, 0, 65536, 2293761, 0, 65536, 2359297, 0, 65536, 2424833, 0, 65536, 2490369, 0, 65536, 2555905, 0, 65536, 1966086, 0, 65536, 1966085, 0, 65536, 2031621, 0, 65536, 1703936, 0, 65536, 1703937, 0, 65536, 1703938, 0, 65536, 1703939, 0, 65536, 1703940, 0, 65536, 1703941, 0, 65536, 1703942, 0, 65536, 1703943, 0, 65536, 1703944, 0, 65536, 1703945, 0, 65536, 1703946, 0, 65536, 1703947, 0, 65536, 1703948, 0, 65536, 1769474, 0, 65536, 1769475, 0, 65536, 1769476, 0, 65536, 1769477, 0, 65536, 1769478, 0, 65536, 1769479, 0, 65536, 1769480, 0, 65536, 1769481, 0, 65536, 1769482, 0, 65536, 1769483, 0, 65536, 1769484, 0, 65536, 2359300, 0, 65536, 2293764, 0, 65536, 2621440, 0, 65536, 2686976, 0, 65536, 2621441, 0, 65536, 2686977, 0, 65536, 2686978, 0, 65536, 2686979, 0, 65536, 2686980, 0, 65536, 2686981, 0, 65536, 2686982, 0, 65536, 2686983, 0, 65536, 2686984, 0, 65536, 2686985, 0, 65536, 2686986, 0, 65536, 2686987, 0, 65536, 2686988, 0, 65536, 2555906, 0, 65536, 2621442, 0, 65536, 2555907, 0, 65536, 2621443, 0, 65536, 2555908, 0, 65536, 2621444, 0, 65536, 2555909, 0, 65536, 2621445, 0, 65536, 2555910, 0, 65536, 2621446, 0, 65536, 2555911, 0, 65536, 2621447, 0, 65536, 2555912, 0, 65536, 2621448, 0, 65536, 2555913, 0, 65536, 2621449, 0, 65536, 2555914, 0, 65536, 2621450, 0, 65536, 2555915, 0, 65536, 2621451, 0, 65536, 2555916, 0, 65536, 2621452, 0, 65536, 2162697, 0, 65536, 2228234, 0, 65536, 1900556, 0, 65536, 2162696, 0, 65536, 2228233, 0, 65536, 2293770, 0, 65536, 1900555, 0, 65536, 1966092, 0, 65536, 1703949, 0, 65536, 1769485, 0, 65536, 1900557, 0, 65536, 2555917, 0, 65536, 2621453, 0, 65536, 2686989, 0, 65536, 1703950, 0, 65536, 1769486, 0, 65536, 2555918, 0, 65536, 2621454, 0, 65536, 2686990, 0, 65536, 1703951, 0, 65536, 1769487, 0, 65536, 2228239, 0, 65536, 2555919, 0, 65536, 2621455, 0, 65536, 2686991, 0, 65536, 1703952, 0, 65536, 1769488, 0, 65536, 2162704, 0, 65536, 2555920, 0, 65536, 2621456, 0, 65536, 2686992, 0, 65536, 1703953, 0, 65536, 1769489, 0, 65536, 2555921, 0, 65536, 2621457, 0, 65536, 2686993, 0, 65536, 1703954, 0, 65536, 1769490, 0, 65536, 2555922, 0, 65536, 2621458, 0, 65536, 2686994, 0, 65536, 1703955, 0, 65536, 1769491, 0, 65536, 1966099, 0, 65536, 2555923, 0, 65536, 2621459, 0, 65536, 2686995, 0, 65536, 1703956, 0, 65536, 1769492, 0, 65536, 2555924, 0, 65536, 2621460, 0, 65536, 2686996, 0, 65536, 1703957, 0, 65536, 1769493, 0, 65536, 2555925, 0, 65536, 2621461, 0, 65536, 2686997, 0, 65536, 1703958, 0, 65536, 1769494, 0, 65536, 2555926, 0, 65536, 2621462, 0, 65536, 2686998, 0, 65536, 1703959, 0, 65536, 1769495, 0, 65536, 2555927, 0, 65536, 2621463, 0, 65536, 2686999, 0, 65536, 1703960, 0, 65536, 1769496, 0, 65536, 1835032, 0, 65536, 1900568, 0, 65536, 1966104, 0, 65536, 2031640, 0, 65536, 2097176, 0, 65536, 2162712, 0, 65536, 2228248, 0, 65536, 2293784, 0, 65536, 2359320, 0, 65536, 2424856, 0, 65536, 2490392, 0, 65536, 2555928, 0, 65536, 2621464, 0, 65536, 2687000, 0, 65536, 2228238, 0, 65536, 2293774, 0, 65536, 2162703, 0, 65536, 1966098, 0, 65536, 2031635, 0, 65536, 2293780, 0, 65536, 2359316, 0, 65536, 1835031, 0, 65536, 1900567, 0, 65536, 1966103, 0, 65536, 2031639, 0, 65536, 2097175, 0, 65536, 2162711, 0, 65536, 2228247, 0, 65536, 2293783, 0, 65536, 2359319, 0, 65536, 2424855, 0, 65536, 2490391, 0, 65536, 2162694, 0, 131072, 1966089, 0, 131072, 1900546, 0, 131072, 2359298, 0, 131072, 1966093, 0, 131072, 2162699, 0, 131072, 2293777, 0, 131072, 1966100, 0, 131072, 1900560, 0, 131072, 2162710, 0, 131072, 2424853, 0, 196608, 1835028, 0, 196608, 1835019, 0, 196608, 2228237, 0, 196608, 2097166, 0, 196608, 2097159, 0, 196608, 2097156, 0, 196608, 1900548, 0, 196608, 2359304, 0, 196608, 2228229, 0, 196608)
+layer_1/name = "Layer1"
+layer_1/z_index = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="ScoreLabel" type="Label" parent="Camera2D/CanvasLayer" node_paths=PackedStringArray("score_manager")]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("8_qbqex")
+score_manager = NodePath("../../../LocalScore")
+
+[node name="TimerLabel" type="Label" parent="Camera2D/CanvasLayer" node_paths=PackedStringArray("timer")]
+offset_left = 1200.0
+offset_right = 1240.0
+offset_bottom = 23.0
+script = ExtResource("9_obfcm")
+timer = NodePath("Timer_round")
+
+[node name="Timer_round" type="Timer" parent="Camera2D/CanvasLayer/TimerLabel" node_paths=PackedStringArray("score")]
+one_shot = true
+script = ExtResource("10_jxkdb")
+score = NodePath("../../../../LocalScore")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Joystick_1_player" parent="." node_paths=PackedStringArray("worm") instance=ExtResource("4_obfcm")]
+position = Vector2(640, 640)
+scale = Vector2(1.5, 1.5)
+worm = NodePath("../Worm_1_player")
+
+[node name="Worm_1_player" parent="." node_paths=PackedStringArray("root", "score_manager") instance=ExtResource("5_jxkdb")]
+position = Vector2(639, 451)
+points = PackedVector2Array(1, 12, 0, 27, -1, 37, -9, 48, -17, 58, -28, 65, -38, 69, -49, 74, -62, 77, -77, 81, -90, 77, -107, 69, -112, 50, -103, 35, -90, 23, -70, 21, -58, 23, -51, 35, -58, 46, -65, 51, -72, 55)
+Ground_Texture = ExtResource("6_i38q7")
+root = NodePath("..")
+score_manager = NodePath("../LocalScore")
+
+[node name="Joystick_2_players_1" parent="." node_paths=PackedStringArray("worm") instance=ExtResource("4_obfcm")]
+position = Vector2(400, 1760)
+scale = Vector2(1.7, 1.7)
+worm = NodePath("../Worm_2_players_1")
+
+[node name="Worm_2_players_1" parent="." node_paths=PackedStringArray("root", "score_manager") instance=ExtResource("5_jxkdb")]
+position = Vector2(400, 1560)
+points = PackedVector2Array(1, 12, 0, 27, -1, 37, -9, 48, -17, 58, -28, 65, -38, 69, -49, 74, -62, 77, -77, 81, -90, 77, -107, 69, -112, 50, -103, 35, -90, 23, -70, 21, -58, 23, -51, 35, -58, 46, -65, 51, -72, 55)
+Ground_Texture = ExtResource("6_i38q7")
+root = NodePath("..")
+score_manager = NodePath("../LocalScore")
+
+[node name="Joystick_2_players_2" parent="." node_paths=PackedStringArray("worm") instance=ExtResource("4_obfcm")]
+position = Vector2(1200, 1760)
+scale = Vector2(1.7, 1.7)
+worm = NodePath("../Worm_2_players_2")
+
+[node name="Worm_2_players_2" parent="." node_paths=PackedStringArray("root", "score_manager") instance=ExtResource("5_jxkdb")]
+position = Vector2(1200, 1560)
+points = PackedVector2Array(1, 12, 0, 27, -1, 37, -9, 48, -17, 58, -28, 65, -38, 69, -49, 74, -62, 77, -77, 81, -90, 77, -107, 69, -112, 50, -103, 35, -90, 23, -70, 21, -58, 23, -51, 35, -58, 46, -65, 51, -72, 55)
+Ground_Texture = ExtResource("6_i38q7")
+root = NodePath("..")
+score_manager = NodePath("../LocalScore")
+
+[node name="Joystick_3_players_1" parent="." node_paths=PackedStringArray("worm") instance=ExtResource("4_obfcm")]
+position = Vector2(1520, 3200)
+scale = Vector2(1.7, 1.7)
+worm = NodePath("../Worm_3_players_1")
+
+[node name="Worm_3_players_1" parent="." node_paths=PackedStringArray("root", "score_manager") instance=ExtResource("5_jxkdb")]
+position = Vector2(1520, 3000)
+points = PackedVector2Array(1, 12, 0, 27, -1, 37, -9, 48, -17, 58, -28, 65, -38, 69, -49, 74, -62, 77, -77, 81, -90, 77, -107, 69, -112, 50, -103, 35, -90, 23, -70, 21, -58, 23, -51, 35, -58, 46, -65, 51, -72, 55)
+Ground_Texture = ExtResource("6_i38q7")
+root = NodePath("..")
+score_manager = NodePath("../LocalScore")
+
+[node name="Joystick_3_players_2" parent="." node_paths=PackedStringArray("worm") instance=ExtResource("4_obfcm")]
+position = Vector2(1000, 3200)
+scale = Vector2(1.7, 1.7)
+worm = NodePath("../Worm_3_players_2")
+
+[node name="Worm_3_players_2" parent="." node_paths=PackedStringArray("root", "score_manager") instance=ExtResource("5_jxkdb")]
+position = Vector2(1000, 3000)
+points = PackedVector2Array(1, 12, 0, 27, -1, 37, -9, 48, -17, 58, -28, 65, -38, 69, -49, 74, -62, 77, -77, 81, -90, 77, -107, 69, -112, 50, -103, 35, -90, 23, -70, 21, -58, 23, -51, 35, -58, 46, -65, 51, -72, 55)
+Ground_Texture = ExtResource("6_i38q7")
+root = NodePath("..")
+score_manager = NodePath("../LocalScore")
+
+[node name="Joystick_3_players_3" parent="." node_paths=PackedStringArray("worm") instance=ExtResource("4_obfcm")]
+position = Vector2(467, 3200)
+scale = Vector2(1.7, 1.7)
+worm = NodePath("../Worm_3_players_3")
+
+[node name="Worm_3_players_3" parent="." node_paths=PackedStringArray("root", "score_manager") instance=ExtResource("5_jxkdb")]
+position = Vector2(467, 3000)
+points = PackedVector2Array(1, 12, 0, 27, -1, 37, -9, 48, -17, 58, -28, 65, -38, 69, -49, 74, -62, 77, -77, 81, -90, 77, -107, 69, -112, 50, -103, 35, -90, 23, -70, 21, -58, 23, -51, 35, -58, 46, -65, 51, -72, 55)
+Ground_Texture = ExtResource("6_i38q7")
+root = NodePath("..")
+score_manager = NodePath("../LocalScore")
+
+[node name="LocalScore" type="Node" parent="."]
+script = ExtResource("11_i38q7")
+metadata/_custom_type_script = "uid://dynaqeo3d7ec8"
+
+[connection signal="timeout" from="Camera2D/CanvasLayer/TimerLabel/Timer_round" to="Camera2D/CanvasLayer/TimerLabel/Timer_round" method="_on_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,125 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8urp6k3uw4jl"]
+
+[ext_resource type="Script" uid="uid://cokqsn0xgjw1t" path="res://minigame_triggering/scripts/example_minigame_root.gd" id="1_0fckt"]
+[ext_resource type="PackedScene" uid="uid://b134qhkpbeq8k" path="res://Mikroplastik werfen/Scenes/slingshot.tscn" id="1_mrciv"]
+[ext_resource type="PackedScene" uid="uid://g2paoittrffy" path="res://Mikroplastik werfen/Scenes/trash_can.tscn" id="2_doabr"]
+[ext_resource type="Script" uid="uid://dynaqeo3d7ec8" path="res://local_score.gd" id="2_xqb78"]
+[ext_resource type="Script" uid="uid://sm54gxhye2hh" path="res://Mikroplastik werfen/Scripts/score_slingshot.gd" id="3_kob2u"]
+[ext_resource type="Script" uid="uid://dd4uexwsrnwl0" path="res://Mikroplastik werfen/Scripts/camera_2d.gd" id="4_0qug8"]
+[ext_resource type="Script" uid="uid://c1xg3nbfg4qlr" path="res://Mikroplastik werfen/Scripts/timer_label.gd" id="4_kob2u"]
+[ext_resource type="PackedScene" uid="uid://cbjx36kdpguyv" path="res://Mikroplastik werfen/Scenes/Obstacle.tscn" id="5_tynql"]
+[ext_resource type="Script" uid="uid://lquqtutw2i17" path="res://Mikroplastik werfen/Scripts/game_timer.gd" id="10_xqb78"]
+[ext_resource type="Script" uid="uid://cmago5tpgk3uo" path="res://Mikroplastik werfen/Scripts/object_deletion.gd" id="11_xqb78"]
+[ext_resource type="Script" uid="uid://cf64sd8fonv4i" path="res://Mikroplastik werfen/Scripts/obstacle_spawning.gd" id="12_txtud"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3s1v8"]
+specular_color = Color(0.617846, 0.461738, 0.699778, 1)
+
+[node name="SlingshotMinigame" type="Node2D" node_paths=PackedStringArray("slingshots", "score_manager", "obstacle_timer_right", "obstacle_timer_left", "timer")]
+script = ExtResource("1_0fckt")
+slingshots = [NodePath("Slingshot_2"), NodePath("Slingshot_1"), NodePath("Slingshot_3")]
+score_manager = NodePath("LocalScore")
+obstacle_timer_right = NodePath("ObstacleSpawnRight/Timer")
+obstacle_timer_left = NodePath("ObstacleSpawnLeft/Timer")
+timer = NodePath("GameTimer")
+
+[node name="LocalScore" type="Node" parent="."]
+script = ExtResource("2_xqb78")
+metadata/_custom_type_script = "uid://dynaqeo3d7ec8"
+
+[node name="Slingshot_2" parent="." node_paths=PackedStringArray("score") instance=ExtResource("1_mrciv")]
+position = Vector2(564, 447)
+score = NodePath("../LocalScore")
+
+[node name="Slingshot_1" parent="." node_paths=PackedStringArray("score") instance=ExtResource("1_mrciv")]
+position = Vector2(197, 447)
+score = NodePath("../LocalScore")
+
+[node name="Slingshot_3" parent="." node_paths=PackedStringArray("score") instance=ExtResource("1_mrciv")]
+position = Vector2(931, 447)
+score = NodePath("../LocalScore")
+
+[node name="TrashCan_1" parent="." node_paths=PackedStringArray("score") instance=ExtResource("2_doabr")]
+position = Vector2(344, 188)
+colour = "PET"
+score = NodePath("../LocalScore")
+
+[node name="TrashCan_2" parent="." node_paths=PackedStringArray("score") instance=ExtResource("2_doabr")]
+position = Vector2(564, 146)
+colour = "PE"
+score = NodePath("../LocalScore")
+
+[node name="TrashCan_3" parent="." node_paths=PackedStringArray("score") instance=ExtResource("2_doabr")]
+position = Vector2(784, 188)
+colour = "PP"
+score = NodePath("../LocalScore")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("4_0qug8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="ScoreLabel" type="Label" parent="Camera2D/CanvasLayer" node_paths=PackedStringArray("score")]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_kob2u")
+score = NodePath("../../../LocalScore")
+
+[node name="TimerLabel" type="Label" parent="Camera2D/CanvasLayer" node_paths=PackedStringArray("timer")]
+offset_left = 1200.0
+offset_right = 1240.0
+offset_bottom = 23.0
+script = ExtResource("4_kob2u")
+timer = NodePath("../../../GameTimer")
+
+[node name="Background_1" type="Sprite2D" parent="."]
+modulate = Color(0.97, 0.879628, 0.5529, 1)
+z_index = -2
+position = Vector2(725.25, 269.75)
+scale = Vector2(1451.5, 540.5)
+texture = SubResource("CanvasTexture_3s1v8")
+
+[node name="Background_2" type="Sprite2D" parent="."]
+modulate = Color(0.86, 0.589387, 0.3526, 1)
+z_index = -1
+position = Vector2(725.25, 610.5)
+scale = Vector2(1451.5, 237)
+texture = SubResource("CanvasTexture_3s1v8")
+
+[node name="GameTimer" type="Timer" parent="." node_paths=PackedStringArray("score")]
+one_shot = true
+script = ExtResource("10_xqb78")
+score = NodePath("../LocalScore")
+
+[node name="ObstacleSpawnRight" type="Node2D" parent="."]
+position = Vector2(1342, 355)
+script = ExtResource("12_txtud")
+scene_to_spawn = ExtResource("5_tynql")
+obstacle_speed = -5
+
+[node name="Timer" type="Timer" parent="ObstacleSpawnRight"]
+wait_time = 8.0
+autostart = true
+
+[node name="ObstacleSpawnLeft" type="Node2D" parent="."]
+position = Vector2(-104, 272)
+script = ExtResource("12_txtud")
+scene_to_spawn = ExtResource("5_tynql")
+obstacle_speed = 5
+
+[node name="Timer" type="Timer" parent="ObstacleSpawnLeft"]
+wait_time = 14.0
+autostart = true
+
+[node name="DeletionArea" type="Area2D" parent="." node_paths=PackedStringArray("score_manager")]
+script = ExtResource("11_xqb78")
+score_manager = NodePath("../LocalScore")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DeletionArea"]
+polygon = PackedVector2Array(-224, -15, -866, -12, -780, 1217, 2168, 1232, 2240, 10, 1465, 10, 1467, 751, -184, 757)
+
+[connection signal="timeout" from="GameTimer" to="GameTimer" method="_on_timeout"]
+[connection signal="timeout" from="ObstacleSpawnRight/Timer" to="ObstacleSpawnRight" method="_on_timer_timeout"]
+[connection signal="timeout" from="ObstacleSpawnLeft/Timer" to="ObstacleSpawnLeft" method="_on_timer_timeout"]
+[connection signal="body_entered" from="DeletionArea" to="DeletionArea" method="_on_body_entered"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbainrjek3xon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4nr7"]
+bg_color = Color(0.113051, 0.378676, 0.867077, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.886275, 0.886275, 0.886275, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color(0, 0, 0, 0.32549)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[node name="CleanEventIcon" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 248.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 8.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -3.0
+offset_right = 10.0
+offset_bottom = 3.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v4nr7")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://x78o3kercq0v"]
+
+[ext_resource type="PackedScene" uid="uid://ce6sxhs3bvoyp" path="res://angel_prototyp/scenes/fishable_objects/fishable_object_1x1.tscn" id="1_hghlu"]
+[ext_resource type="Resource" uid="uid://ssxjji4xxto2" path="res://minigame_setups/plastic_throwing_setup.tres" id="2_lpnxd"]
+[ext_resource type="Texture2D" uid="uid://c3i5n01jfr6x7" path="res://angel_prototyp/assets new/flasche.png" id="2_tncc3"]
+[ext_resource type="Texture2D" uid="uid://dmxm36oa6lqc4" path="res://angel_prototyp/assets new/flasche2.png" id="4_k72bx"]
+[ext_resource type="Texture2D" uid="uid://c6tmdeivm04bd" path="res://angel_prototyp/assets new/flasche3.png" id="5_1eufh"]
+
+[node name="Fishable Bottle 1x1" instance=ExtResource("1_hghlu")]
+minigame = ExtResource("2_lpnxd")
+decay_level_sprites = Array[Texture]([ExtResource("2_tncc3"), ExtResource("4_k72bx"), ExtResource("5_1eufh")])
+puddle_color = Color(0.352941, 0.686275, 0.647059, 1)
+
+[node name="ObjectSprite" parent="." index="0"]
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("2_tncc3")
+region_enabled = false

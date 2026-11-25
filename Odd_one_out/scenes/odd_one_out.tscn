@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcfoq7hrcjocs"]
+
+[ext_resource type="Script" uid="uid://ck7i5gx1jxv34" path="res://Odd_one_out/scripts/Instantiate_Manager.gd" id="1_md34n"]
+[ext_resource type="Resource" uid="uid://decpyybe2a5w2" path="res://Odd_one_out/levels/level_2.tres" id="2_oy14i"]
+[ext_resource type="PackedScene" uid="uid://blfkl7nia6ppp" path="res://Odd_one_out/scenes/apfel.tscn" id="2_qg0ih"]
+[ext_resource type="PackedScene" uid="uid://dulvsmxmqsy1y" path="res://Odd_one_out/scenes/Banane.tscn" id="3_i0ax2"]
+[ext_resource type="PackedScene" uid="uid://bhy17rlrc44ia" path="res://Odd_one_out/scenes/Birne.tscn" id="4_oy14i"]
+[ext_resource type="Script" uid="uid://66ieo31xn4qv" path="res://Odd_one_out/scripts/countdown_timer_label.gd" id="6_jeisl"]
+[ext_resource type="PackedScene" uid="uid://dc74j8e6js51e" path="res://Odd_one_out/scenes/plastik.tscn" id="6_n8g6l"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cxfqb"]
+
+[node name="Odd One Out" type="Node2D" node_paths=PackedStringArray("object_container", "point_label", "countdown")]
+script = ExtResource("1_md34n")
+level = ExtResource("2_oy14i")
+fruits = Array[PackedScene]([ExtResource("2_qg0ih"), ExtResource("3_i0ax2"), ExtResource("4_oy14i")])
+plastic = Array[PackedScene]([ExtResource("6_n8g6l")])
+object_container = NodePath("ObjectContainer")
+point_label = NodePath("UILayer/ScoreLabel")
+countdown = NodePath("UILayer/CountdownTimerLabel")
+min_points = 2
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2(693, 721)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_cxfqb")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2(638, -2)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_cxfqb")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+position = Vector2(-3, 356)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+position = Vector2(3, -3)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_cxfqb")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2(1283, 327)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_cxfqb")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UILayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = 13.0
+offset_right = -23.0
+offset_bottom = 36.0
+grow_horizontal = 0
+text = "Punkte: 0"
+
+[node name="CountdownTimerLabel" type="Label" parent="UILayer"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 56.0
+offset_bottom = 38.0
+text = "00:00"
+script = ExtResource("6_jeisl")
+
+[node name="ObjectContainer" type="Node2D" parent="."]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ProgressCleanEvent" load_steps=3 format=3 uid="uid://c8lltpwx3btn6"]
+
+[ext_resource type="Script" uid="uid://f8k5v6yucl1t" path="res://angel_prototyp/scripts/progress_events/clean_event.gd" id="1_ilx5t"]
+[ext_resource type="PackedScene" uid="uid://dbainrjek3xon" path="res://angel_prototyp/scenes/clean_event_icon.tscn" id="1_vdnjn"]
+
+[resource]
+script = ExtResource("1_ilx5t")
+pollution_clean_percent = 0.1
+object_remove_use_percentage = true
+object_remove_percentage = 0.1
+object_remove_count = 0
+at_percentage = 0.15
+icon = ExtResource("1_vdnjn")
+metadata/_custom_type_script = "uid://f8k5v6yucl1t"

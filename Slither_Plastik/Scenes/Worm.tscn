@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgmypken6in0q"]
+
+[ext_resource type="Script" uid="uid://busfqx73v63sh" path="res://Slither_Plastik/Scripts/worm_2.gd" id="1_d8jil"]
+[ext_resource type="Texture2D" uid="uid://f1wf0q6qh01o" path="res://Slither_Plastik/Sprites/Worm_head.png" id="2_d8jil"]
+[ext_resource type="Texture2D" uid="uid://cp30fwyude8oe" path="res://Slither_Plastik/Sprites/Worm_body.png" id="3_ih2i3"]
+[ext_resource type="Texture2D" uid="uid://c2va6e2ypawkd" path="res://Slither_Plastik/Sprites/Worm_tail.png" id="4_cr8v0"]
+[ext_resource type="Script" uid="uid://cigchbgasnjg5" path="res://Slither_Plastik/Scripts/Worm_Hitbox.gd" id="5_ih2i3"]
+[ext_resource type="Script" uid="uid://cjfx0l1wc0ich" path="res://Slither_Plastik/Scripts/ground_detection.gd" id="6_cr8v0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d8jil"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8jil"]
+radius = 17.1172
+
+[node name="Worm" type="Line2D" node_paths=PackedStringArray("Textures", "Hitbox", "Ground")]
+material = SubResource("CanvasItemMaterial_d8jil")
+points = PackedVector2Array(134, 44, 134, 63, 136, 85, 135, 104, 134, 126, 133, 147, 141, 164, 133, 178, 134, 195, 130, 211, 131, 226, 134, 241, 131, 258, 131, 276, 131, 294, 132, 307, 134, 324, 128, 335, 134, 348, 131, 361, 128, 374)
+width = 35.0
+texture = ExtResource("3_ih2i3")
+texture_mode = 1
+joint_mode = 2
+end_cap_mode = 2
+script = ExtResource("1_d8jil")
+Textures = [NodePath("WormSprites/head_sprite"), NodePath("WormSprites/tail_sprite")]
+Hitbox = NodePath("Hitbox")
+Ground = NodePath("Ground")
+
+[node name="WormSprites" type="Node2D" parent="."]
+
+[node name="head_sprite" type="Sprite2D" parent="WormSprites"]
+rotation = -1.5708
+texture = ExtResource("2_d8jil")
+
+[node name="tail_sprite" type="Sprite2D" parent="WormSprites"]
+rotation = -1.5708
+texture = ExtResource("4_cr8v0")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("ground", "worm")]
+scale = Vector2(0.695, 0.695)
+script = ExtResource("5_ih2i3")
+ground = NodePath("../Ground")
+worm = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_d8jil")
+
+[node name="Ground_detection" type="Area2D" parent="."]
+scale = Vector2(0.695, 0.695)
+script = ExtResource("6_cr8v0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_detection"]
+shape = SubResource("CircleShape2D_d8jil")
+
+[node name="Ground" type="Area2D" parent="." groups=["Worked_Ground"]]
+z_index = -1
+
+[connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="Hitbox" method="_on_area_exited"]
+[connection signal="area_entered" from="Ground_detection" to="Ground_detection" method="_on_area_entered"]
+[connection signal="area_exited" from="Ground_detection" to="Ground_detection" method="_on_area_exited"]

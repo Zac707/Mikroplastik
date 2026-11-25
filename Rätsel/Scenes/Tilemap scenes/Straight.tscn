@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://e7xeuqcbx60a"]
+
+[ext_resource type="Texture2D" uid="uid://bfoj7p2xjw1k0" path="res://Rätsel/Assets/Straight.png" id="2_hy4rh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1t7vm"]
+radius = 14.0
+
+[node name="Straight" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1t7vm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_hy4rh")
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="Area2D" method="_on_area_exited"]

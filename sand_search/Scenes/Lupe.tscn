@@ -1,0 +1,88 @@
+[gd_scene load_steps=15 format=3 uid="uid://cxyevch6l7tes"]
+
+[ext_resource type="Texture2D" uid="uid://w6d8f6ttmnwh" path="res://sand_search/Sprites/Lupe_Glas.png" id="1_igmqw"]
+[ext_resource type="Script" uid="uid://c0is8qyxelyxe" path="res://sand_search/Scripts/lupe_bewegen.gd" id="1_lhuv6"]
+[ext_resource type="Texture2D" uid="uid://h5idrognfcwh" path="res://sand_search/Sprites/temp_backg_sand.png" id="2_8emyy"]
+[ext_resource type="Texture2D" uid="uid://cty00cvlo7u73" path="res://sand_search/Sprites/Lupe.png" id="3_lhuv6"]
+[ext_resource type="Script" uid="uid://65x4sj05r8bi" path="res://sand_search/Scripts/lupe_glas.gd" id="3_rgigy"]
+[ext_resource type="Texture2D" uid="uid://de7nf08md7bmv" path="res://sand_search/Sprites/foreground.png" id="4_iubcu"]
+[ext_resource type="Script" uid="uid://8ipwigdsvj3m" path="res://sand_search/Scripts/backg_shifting.gd" id="4_iyxmt"]
+[ext_resource type="Script" uid="uid://dql57bkevnura" path="res://sand_search/Scripts/microplastic_spawn.gd" id="5_xpcio"]
+[ext_resource type="PackedScene" uid="uid://b8icc6iq21g2n" path="res://sand_search/Scenes/plastic_1.tscn" id="6_6comk"]
+[ext_resource type="PackedScene" uid="uid://cuen1hkxe1hwp" path="res://sand_search/Scenes/plastic_2.tscn" id="7_rgigy"]
+[ext_resource type="PackedScene" uid="uid://dbdlnyt72pfek" path="res://sand_search/Scenes/plastic_3.tscn" id="8_2ejs8"]
+[ext_resource type="Script" uid="uid://4fwgy273pat" path="res://sand_search/Scripts/plastic_detection.gd" id="11_2ejs8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iyxmt"]
+radius = 13.435
+height = 38.1838
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iubcu"]
+radius = 4.83621
+
+[node name="Griff" type="Area2D" node_paths=PackedStringArray("_touch_area", "Background", "Foreground") groups=["Lupe"]]
+scale = Vector2(3, 3)
+script = ExtResource("1_lhuv6")
+_touch_area = NodePath(".")
+_also_check_mouse_input = true
+Background = NodePath("Lupe_Glas/Background")
+Foreground = NodePath("Lupe_Glas/Foreground")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(13, 13)
+rotation = -0.785398
+shape = SubResource("CapsuleShape2D_iyxmt")
+
+[node name="Lupe_Glas" type="Sprite2D" parent="." node_paths=PackedStringArray("background", "foreground")]
+clip_children = 1
+z_index = 2
+position = Vector2(-6.5, -6.5)
+texture = ExtResource("1_igmqw")
+script = ExtResource("3_rgigy")
+background = NodePath("Background")
+foreground = NodePath("Foreground")
+
+[node name="Background" type="Sprite2D" parent="Lupe_Glas" node_paths=PackedStringArray("lupe")]
+position = Vector2(6.5, 6.5)
+scale = Vector2(3, 3)
+texture = ExtResource("2_8emyy")
+script = ExtResource("4_iyxmt")
+lupe = NodePath("../..")
+
+[node name="Microplastic_spawn" type="Node2D" parent="Lupe_Glas/Background" node_paths=PackedStringArray("lupe", "second_background")]
+clip_children = 1
+script = ExtResource("5_xpcio")
+lupe = NodePath("../../..")
+Plastic_1 = ExtResource("6_6comk")
+Plastic_2 = ExtResource("7_rgigy")
+Plastic_3 = ExtResource("8_2ejs8")
+second_background = NodePath("../..")
+
+[node name="Foreground" type="Sprite2D" parent="Lupe_Glas" node_paths=PackedStringArray("lupe")]
+visible = false
+scale = Vector2(3, 3)
+texture = ExtResource("4_iubcu")
+script = ExtResource("4_iyxmt")
+lupe = NodePath("../..")
+
+[node name="Lupe_Sprite" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("3_lhuv6")
+
+[node name="Plastic_detection" type="Area2D" parent="." node_paths=PackedStringArray("timer", "glas")]
+z_index = 2
+position = Vector2(-6.5, -6.5)
+script = ExtResource("11_2ejs8")
+timer = NodePath("Timer")
+glas = NodePath("../Lupe_Glas")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plastic_detection"]
+shape = SubResource("CircleShape2D_iubcu")
+
+[node name="Timer" type="Timer" parent="Plastic_detection"]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="area_entered" from="Plastic_detection" to="Plastic_detection" method="_on_area_entered"]
+[connection signal="area_exited" from="Plastic_detection" to="Plastic_detection" method="_on_area_exited"]
+[connection signal="timeout" from="Plastic_detection/Timer" to="Plastic_detection" method="_on_timer_timeout"]

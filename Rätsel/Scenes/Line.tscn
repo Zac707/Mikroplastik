@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://daevauqddsga"]
+
+[ext_resource type="Script" uid="uid://ccmdp36qkwqvq" path="res://Rätsel/Scripts/linie_bewegen.gd" id="1_4v826"]
+[ext_resource type="Script" uid="uid://r6sj134wuem7" path="res://Rätsel/Scripts/detection_area.gd" id="2_1hslf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hslf"]
+radius = 39.0128
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_csmmb"]
+radius = 6.08276
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csmmb"]
+size = Vector2(1, 1)
+
+[node name="Line" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-7.0]
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(1, 3)
+points = PackedVector2Array(-1, 44, -1, -3)
+
+[node name="TouchArea" type="Area2D" parent="." node_paths=PackedStringArray("_touch_area", "check_area", "line", "timer")]
+script = ExtResource("1_4v826")
+_touch_area = NodePath(".")
+check_area = NodePath("../DetectionArea")
+_also_check_mouse_input = true
+line = NodePath("../Line2D")
+timer = NodePath("../Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea"]
+shape = SubResource("CircleShape2D_1hslf")
+
+[node name="CollisionArea" type="Area2D" parent="TouchArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea/CollisionArea"]
+shape = SubResource("CircleShape2D_csmmb")
+
+[node name="DetectionArea" type="Area2D" parent="." node_paths=PackedStringArray("line", "control_area") groups=["Line_Rätsel"]]
+script = ExtResource("2_1hslf")
+line = NodePath("../Line2D")
+control_area = NodePath("../TouchArea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_csmmb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
+[connection signal="area_exited" from="TouchArea" to="." method="_on_touch_area_area_exited"]
+[connection signal="area_entered" from="TouchArea/CollisionArea" to="TouchArea" method="_on_collision_area_area_entered"]
+[connection signal="area_exited" from="TouchArea/CollisionArea" to="TouchArea" method="_on_collision_area_area_exited"]
+[connection signal="area_entered" from="DetectionArea" to="DetectionArea" method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="TouchArea" method="_on_timer_timeout"]

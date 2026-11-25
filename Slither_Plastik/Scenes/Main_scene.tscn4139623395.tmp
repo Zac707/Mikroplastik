@@ -1,0 +1,36 @@
+[gd_scene load_steps=9 format=3 uid="uid://gb3bsfj21hqd"]
+
+[ext_resource type="PackedScene" uid="uid://cp51brwbn0gi0" path="res://Slither_Plastik/Scenes/joystick.tscn" id="1_hu3kr"]
+[ext_resource type="PackedScene" uid="uid://dgmypken6in0q" path="res://Slither_Plastik/Scenes/Worm.tscn" id="2_ikw5v"]
+[ext_resource type="PackedScene" uid="uid://8yubmtvbjfax" path="res://Slither_Plastik/Scenes/wall.tscn" id="3_mwt5n"]
+[ext_resource type="PackedScene" uid="uid://ddqn7dshdqmf0" path="res://Slither_Plastik/Scenes/ground_texture.tscn" id="3_o62pk"]
+[ext_resource type="PackedScene" uid="uid://cq8bnr8gmim0d" path="res://Slither_Plastik/Scenes/plastic.tscn" id="4_c2ngl"]
+[ext_resource type="PackedScene" uid="uid://bbmkuan4hi34i" path="res://Slither_Plastik/Scenes/food.tscn" id="5_tegad"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c2ngl"]
+scenes/1/scene = ExtResource("3_mwt5n")
+scenes/2/scene = ExtResource("4_c2ngl")
+scenes/3/scene = ExtResource("5_tegad")
+
+[sub_resource type="TileSet" id="TileSet_tegad"]
+tile_size = Vector2i(20, 20)
+sources/0 = SubResource("TileSetScenesCollectionSource_c2ngl")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Ground" type="Area2D" parent="."]
+
+[node name="Joystick" parent="." node_paths=PackedStringArray("worm") instance=ExtResource("1_hu3kr")]
+position = Vector2(241, 589)
+worm = NodePath("../Worm")
+
+[node name="Worm" parent="." node_paths=PackedStringArray("Ground") instance=ExtResource("2_ikw5v")]
+position = Vector2(100, 88)
+points = PackedVector2Array(216, 139, 194, 51, 186, 30, 186, 14, 186, -14, 191, -30, 180, -68)
+Ground = NodePath("../Ground")
+Ground_Texture = ExtResource("3_o62pk")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_tegad")
+format = 2
+layer_0/tile_data = PackedInt32Array(917538, 0, 65536, 983074, 0, 65536, 1048610, 0, 65536, 1114146, 0, 65536, 1179682, 0, 65536, 1245218, 0, 65536, 1310754, 0, 65536, 1310755, 0, 65536, 1376291, 0, 65536, 1376290, 0, 65536, 1245219, 0, 65536, 1179683, 0, 65536, 1114147, 0, 65536, 1048611, 0, 65536, 983075, 0, 65536, 917539, 0, 65536, 1376279, 0, 131072, 1769502, 0, 131072, 1179678, 0, 131072, 1572898, 0, 131072, 1835032, 0, 131072, 1507354, 0, 196608, 1638421, 0, 196608, 1900582, 0, 196608, 1572907, 0, 196608, 2031645, 0, 196608, 1114158, 0, 196608)

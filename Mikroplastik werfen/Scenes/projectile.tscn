@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://qxk1hi8q8gdl"]
+
+[ext_resource type="Texture2D" uid="uid://dc8i224yqtsu5" path="res://Mikroplastik werfen/Sprites/Projectile.png" id="1_a85iw"]
+[ext_resource type="Script" uid="uid://ctvtlins1gtku" path="res://Mikroplastik werfen/Scripts/projectile_sent.gd" id="1_yttbf"]
+[ext_resource type="Texture2D" uid="uid://cf2dh0654qqs8" path="res://Mikroplastik werfen/Sprites/Projectile 3.png" id="3_goo2o"]
+[ext_resource type="Texture2D" uid="uid://dfg68gk0hfl4d" path="res://Mikroplastik werfen/Sprites/Projectile 2.png" id="4_pq1v8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qxf0c"]
+friction = 0.54
+bounce = 0.75
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qxf0c"]
+radius = 12.0
+
+[node name="Projectile" type="RigidBody2D" node_paths=PackedStringArray("PP", "PE", "PET") groups=["Projectile"]]
+z_index = 3
+physics_material_override = SubResource("PhysicsMaterial_qxf0c")
+script = ExtResource("1_yttbf")
+PP = NodePath("PP")
+PE = NodePath("PE")
+PET = NodePath("PET")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qxf0c")
+
+[node name="PP" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_a85iw")
+
+[node name="PE" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_goo2o")
+
+[node name="PET" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_pq1v8")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://j7brfvs7iyty"]
+
+[ext_resource type="PackedScene" uid="uid://c64gpfy8r7n1m" path="res://angel_prototyp/scenes/fishing_assembly.tscn" id="1_sddjv"]
+[ext_resource type="Texture2D" uid="uid://bystgi8fd1ccf" path="res://angel_prototyp/assets new/Assets again/winde angelhaken lila.png" id="2_owltf"]
+[ext_resource type="Texture2D" uid="uid://cs54k1hhkj518" path="res://angel_prototyp/assets new/Assets again/winde lila.png" id="3_o3u4o"]
+[ext_resource type="Texture2D" uid="uid://runsk0ibgor0" path="res://angel_prototyp/assets new/Assets again/winde hebel lila.png" id="4_y155s"]
+
+[node name="FishingAssembly" instance=ExtResource("1_sddjv")]
+
+[node name="HookSprite" parent="ThrowableRB" index="1"]
+texture = ExtResource("2_owltf")
+
+[node name="WinchSprite" parent="WinchPanel" index="0"]
+texture = ExtResource("3_o3u4o")
+
+[node name="HandleSprite" parent="WinchPanel/HandleContainer" index="0"]
+texture = ExtResource("4_y155s")

@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://b134qhkpbeq8k"]
+
+[ext_resource type="Texture2D" uid="uid://bk4lv11fa7f7g" path="res://Mikroplastik werfen/Sprites/Slingshot.png" id="1_l0jvn"]
+[ext_resource type="Script" uid="uid://chgxshj1vrulr" path="res://Mikroplastik werfen/Scripts/slingshot.gd" id="1_wnjol"]
+[ext_resource type="Script" uid="uid://bk2pyu0608heh" path="res://Mikroplastik werfen/Scripts/band.gd" id="2_yv5x8"]
+[ext_resource type="Script" uid="uid://cw4lu330gs3y5" path="res://Mikroplastik werfen/Scripts/projectile_2.gd" id="4_kvwhh"]
+[ext_resource type="Texture2D" uid="uid://dc8i224yqtsu5" path="res://Mikroplastik werfen/Sprites/Projectile.png" id="5_wnjol"]
+[ext_resource type="PackedScene" uid="uid://qxk1hi8q8gdl" path="res://Mikroplastik werfen/Scenes/projectile.tscn" id="5_y5dtw"]
+[ext_resource type="Texture2D" uid="uid://cf2dh0654qqs8" path="res://Mikroplastik werfen/Sprites/Projectile 3.png" id="7_y5dtw"]
+[ext_resource type="Texture2D" uid="uid://dfg68gk0hfl4d" path="res://Mikroplastik werfen/Sprites/Projectile 2.png" id="8_rrekb"]
+[ext_resource type="Texture2D" uid="uid://03neugml3p2l" path="res://Mikroplastik werfen/Sprites/guideline.png" id="9_wnjol"]
+
+[sub_resource type="Curve" id="Curve_8y0oq"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 0.314607), 0.0, 0.0, 0, 0, Vector2(0.5, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.314607), -4.74817e-07, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ics3y"]
+radius = 24.0208
+
+[node name="Slingshot" type="Node2D" node_paths=PackedStringArray("PP", "PE", "PET", "Hitbox", "guideline", "timer")]
+script = ExtResource("1_wnjol")
+PP = NodePath("Projectile/PP")
+PE = NodePath("Projectile/PE")
+PET = NodePath("Projectile/PET")
+Hitbox = NodePath("Projectile")
+guideline = NodePath("Guideline")
+timer = NodePath("Timer")
+
+[node name="Anchor" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Anchor"]
+position = Vector2(0, 42)
+texture = ExtResource("1_l0jvn")
+
+[node name="Band" type="Line2D" parent="." node_paths=PackedStringArray("target")]
+z_index = 1
+points = PackedVector2Array(21, 13, 0, 30, -21, 13)
+width = 5.0
+width_curve = SubResource("Curve_8y0oq")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 10.0
+round_precision = 12
+script = ExtResource("2_yv5x8")
+target = NodePath("../Projectile/Anchor")
+
+[node name="Projectile" type="Area2D" parent="." node_paths=PackedStringArray("_touch_area", "RNG", "guideline")]
+position = Vector2(0, 20)
+script = ExtResource("4_kvwhh")
+_touch_area = NodePath(".")
+_also_check_mouse_input = true
+obj = ExtResource("5_y5dtw")
+RNG = NodePath("..")
+guideline = NodePath("../Guideline")
+
+[node name="PP" type="Sprite2D" parent="Projectile"]
+visible = false
+texture = ExtResource("5_wnjol")
+
+[node name="PE" type="Sprite2D" parent="Projectile"]
+visible = false
+texture = ExtResource("7_y5dtw")
+
+[node name="PET" type="Sprite2D" parent="Projectile"]
+visible = false
+texture = ExtResource("8_rrekb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
+shape = SubResource("CircleShape2D_ics3y")
+
+[node name="Anchor" type="Node2D" parent="Projectile"]
+position = Vector2(0, 8)
+
+[node name="Guideline" type="Line2D" parent="."]
+z_index = 2
+texture = ExtResource("9_wnjol")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="input_event" from="Projectile" to="Projectile" method="_on_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

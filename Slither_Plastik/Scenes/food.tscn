@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbmkuan4hi34i"]
+
+[ext_resource type="Texture2D" uid="uid://dfmq3ye2qv8gk" path="res://Slither_Plastik/Sprites/Food_Worm.png" id="1_opo44"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0mq2h"]
+
+[node name="Food" type="Area2D" groups=["Food_Worm"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0mq2h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_opo44")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="OddOneOutLevel" load_steps=2 format=3 uid="uid://7ghs3oyjpk2w"]
+
+[ext_resource type="Script" uid="uid://bnagur2u6lley" path="res://Odd_one_out/scripts/odd_one_out_level.gd" id="1_8wwck"]
+
+[resource]
+script = ExtResource("1_8wwck")
+bio_speed = 200.0
+bio_obj_count = 60
+plastic_speed = 200.0
+metadata/_custom_type_script = "uid://bnagur2u6lley"

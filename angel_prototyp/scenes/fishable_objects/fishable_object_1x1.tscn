@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ce6sxhs3bvoyp"]
+
+[ext_resource type="Texture2D" uid="uid://bkcejdjg2rhm7" path="res://angel_prototyp/eimer.png" id="1_ay72a"]
+[ext_resource type="Script" uid="uid://cdkhw4tgbkf46" path="res://angel_prototyp/scripts/fishable_object.gd" id="1_ecsmp"]
+[ext_resource type="PackedScene" uid="uid://btfq5vses2g4e" path="res://angel_prototyp/scenes/puddle_visual.tscn" id="2_c408l"]
+[ext_resource type="Texture2D" uid="uid://2ol512jb5w4e" path="res://angel_prototyp/assets new/winde angelhaken.png" id="3_dgqec"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay72a"]
+radius = 23.0868
+
+[node name="FishableObject 1x1" type="Node2D" node_paths=PackedStringArray("hook_attachment_obj", "sprite", "area", "decay_timer")]
+script = ExtResource("1_ecsmp")
+hook_attachment_obj = NodePath("AttachmentPoint")
+sprite = NodePath("ObjectSprite")
+area = NodePath("FishableContactArea")
+decay_timer = NodePath("DecayTimer")
+puddle_prefab = ExtResource("2_c408l")
+
+[node name="ObjectSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_ay72a")
+region_enabled = true
+region_rect = Rect2(64, 64, 288, 288)
+
+[node name="FishableContactArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FishableContactArea"]
+shape = SubResource("CircleShape2D_ay72a")
+
+[node name="DecayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttachmentPoint" type="Node2D" parent="."]
+visible = false
+position = Vector2(15, 8)
+rotation = -0.322934
+
+[node name="HookSprite" type="Sprite2D" parent="AttachmentPoint"]
+position = Vector2(1, -11)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_dgqec")

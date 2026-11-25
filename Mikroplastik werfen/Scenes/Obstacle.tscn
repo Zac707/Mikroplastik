@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbjx36kdpguyv"]
+
+[ext_resource type="Script" uid="uid://clknu0y7bt4wn" path="res://Mikroplastik werfen/Scripts/obstacle.gd" id="1_hmj81"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvy7"]
+size = Vector2(98, 20)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hmj81"]
+specular_color = Color(0.860961, 0.706782, 0.706113, 1)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_hmj81")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dxvy7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.946806, 0.443396, 0.354897, 1)
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(100, 20)
+texture = SubResource("CanvasTexture_hmj81")

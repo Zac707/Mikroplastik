@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://yoh4w7nq5mv"]
+
+[ext_resource type="Script" uid="uid://br08ifymn1i5e" path="res://minigame_triggering/scripts/minigames_manager.gd" id="1_55y1m"]
+[ext_resource type="PackedScene" uid="uid://8b0c2bgw8ct2" path="res://minigame_triggering/scenes/intro_panel_default.tscn" id="2_qx6hq"]
+[ext_resource type="PackedScene" uid="uid://civq3lj6yxh85" path="res://minigame_triggering/scenes/results_panel_default.tscn" id="3_740wr"]
+
+[node name="Minigames" type="Node" node_paths=PackedStringArray("ui_parent", "minigame_holder")]
+process_mode = 1
+script = ExtResource("1_55y1m")
+default_intro_panel = ExtResource("2_qx6hq")
+default_results_panel = ExtResource("3_740wr")
+ui_parent = NodePath("MinigamesUI")
+minigame_holder = NodePath("MinigameHolder")
+
+[node name="MinigamesUI" type="CanvasLayer" parent="."]
+
+[node name="MinigameHolder" type="Node" parent="."]

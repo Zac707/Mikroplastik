@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbdlnyt72pfek"]
+
+[ext_resource type="Texture2D" uid="uid://lrl5dy273h8q" path="res://sand_search/Sprites/Plastic 3.png" id="1_fwrg0"]
+[ext_resource type="Script" uid="uid://bw7ou8obebdth" path="res://sand_search/Scripts/delete_microplastic.gd" id="2_ikvnk"]
+[ext_resource type="Script" uid="uid://c7yvwsm7pv13f" path="res://sand_search/Scripts/plastic_id.gd" id="2_ye85p"]
+[ext_resource type="Script" uid="uid://cu6w0r78g0ucx" path="res://sand_search/Scripts/label.gd" id="4_7640j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fi3xy"]
+radius = 12.0
+
+[node name="Sprite2D" type="Sprite2D" groups=["Plastic_sand"]]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_fwrg0")
+script = ExtResource("2_ye85p")
+
+[node name="Plastic_3" type="Area2D" parent="." groups=["Plastic_sand_hitbox"]]
+script = ExtResource("2_ikvnk")
+plastic_type = "Plastik 3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plastic_3"]
+z_index = 1
+shape = SubResource("CircleShape2D_fi3xy")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_7640j")
+
+[connection signal="tree_exited" from="Plastic_3" to="Plastic_3" method="_on_tree_exited"]

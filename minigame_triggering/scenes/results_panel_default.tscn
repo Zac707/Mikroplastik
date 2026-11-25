@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://civq3lj6yxh85"]
+
+[ext_resource type="Script" uid="uid://bekh20a8wok0c" path="res://minigame_triggering/scripts/results_panel/results_panel_default.gd" id="1_ulg4y"]
+[ext_resource type="PackedScene" uid="uid://b1t0aainvkkhq" path="res://minigame_triggering/scenes/results_panel_prefab.tscn" id="2_d7ui3"]
+
+[node name="ResultsPanelDefault" type="Control" node_paths=PackedStringArray("score_group", "title_label", "info_label", "confirm_button", "highlight")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ulg4y")
+score_group = NodePath("ResultsPanelPrefab/Panel/ScoreControl/StarTextureGroup")
+title_label = NodePath("ResultsPanelPrefab/Panel/TitleLabel")
+info_label = NodePath("ResultsPanelPrefab/Panel/InfoControl/ContentLabel")
+confirm_button = NodePath("ResultsPanelPrefab/Panel/ConfirmButton")
+highlight = NodePath("ResultsPanelPrefab/Panel/HighlightPicture")
+
+[node name="ResultsPanelPrefab" parent="." instance=ExtResource("2_d7ui3")]
+layout_mode = 1
+
+[editable path="ResultsPanelPrefab"]

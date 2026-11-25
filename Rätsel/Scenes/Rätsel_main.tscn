@@ -1,0 +1,191 @@
+[gd_scene load_steps=25 format=4 uid="uid://cdfc73fx263xr"]
+
+[ext_resource type="Script" uid="uid://cqnkue2qm4v8u" path="res://Mikroplastik werfen/Scripts/Score.gd" id="1_aubpr"]
+[ext_resource type="Script" uid="uid://cy0rnp75fa3y4" path="res://Rätsel/Scripts/rätsel_main.gd" id="1_gmpml"]
+[ext_resource type="Texture2D" uid="uid://d3iro50pt03io" path="res://Rätsel/Assets/tiles 2.png" id="1_r7ovt"]
+[ext_resource type="PackedScene" uid="uid://daevauqddsga" path="res://Rätsel/Scenes/Line.tscn" id="2_ltdxc"]
+[ext_resource type="PackedScene" uid="uid://e7xeuqcbx60a" path="res://Rätsel/Scenes/Tilemap scenes/Straight.tscn" id="3_w0c8t"]
+[ext_resource type="PackedScene" uid="uid://sg7vgspdxwef" path="res://Rätsel/Scenes/Tilemap scenes/3_Corners_up.tscn" id="4_68x4v"]
+[ext_resource type="PackedScene" uid="uid://bbne0158l2lh7" path="res://Rätsel/Scenes/Trash.tscn" id="4_ltdxc"]
+[ext_resource type="PackedScene" uid="uid://c0p4k0rcrgapa" path="res://Rätsel/Scenes/Tilemap scenes/Straight_horizontal.tscn" id="4_w0c8t"]
+[ext_resource type="PackedScene" uid="uid://1lo7d5c3m6cn" path="res://Rätsel/Scenes/Tilemap scenes/2_Corners_up_left.tscn" id="5_l6uy8"]
+[ext_resource type="PackedScene" uid="uid://2wpu0612vqwf" path="res://Rätsel/Scenes/Tilemap scenes/4_Corners.tscn" id="5_y8sod"]
+[ext_resource type="PackedScene" uid="uid://bebhkpq1i758c" path="res://Rätsel/Scenes/Tilemap scenes/2_Corners_down_left.tscn" id="6_3ppew"]
+[ext_resource type="PackedScene" uid="uid://dhymboatyoyvq" path="res://Rätsel/Scenes/Tilemap scenes/2_Corners_down_right.tscn" id="7_kd0g8"]
+[ext_resource type="PackedScene" uid="uid://7gvm40gv360c" path="res://Rätsel/Scenes/Tilemap scenes/2_Corners_up_right.tscn" id="8_sikhx"]
+[ext_resource type="PackedScene" uid="uid://2k5jb66v5j6x" path="res://Rätsel/Scenes/Tilemap scenes/3_Corners_down.tscn" id="11_qy5rd"]
+[ext_resource type="PackedScene" uid="uid://drryjkdmyum2h" path="res://Rätsel/Scenes/Tilemap scenes/3_Corners_left.tscn" id="12_eckcg"]
+[ext_resource type="PackedScene" uid="uid://dyitjidsnnruu" path="res://Rätsel/Scenes/Tilemap scenes/3_Corners_right.tscn" id="13_w40gr"]
+[ext_resource type="Script" uid="uid://dynaqeo3d7ec8" path="res://local_score.gd" id="17_eckcg"]
+[ext_resource type="PackedScene" uid="uid://rtexg32e1nhc" path="res://Rätsel/Scenes/End_Zone.tscn" id="18_eckcg"]
+[ext_resource type="Script" uid="uid://c1xg3nbfg4qlr" path="res://Mikroplastik werfen/Scripts/timer_label.gd" id="19_ilc1d"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f6xw0"]
+texture = ExtResource("1_r7ovt")
+texture_region_size = Vector2i(64, 64)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+0:0/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_l6uy8"]
+scenes/1/scene = ExtResource("3_w0c8t")
+scenes/2/scene = ExtResource("4_w0c8t")
+scenes/3/scene = ExtResource("5_l6uy8")
+scenes/4/scene = ExtResource("6_3ppew")
+scenes/5/scene = ExtResource("7_kd0g8")
+scenes/6/scene = ExtResource("8_sikhx")
+scenes/7/scene = ExtResource("11_qy5rd")
+scenes/8/scene = ExtResource("12_eckcg")
+scenes/9/scene = ExtResource("13_w40gr")
+scenes/10/scene = ExtResource("4_68x4v")
+scenes/11/scene = ExtResource("5_y8sod")
+
+[sub_resource type="TileSet" id="TileSet_jwwgb"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_f6xw0")
+sources/1 = SubResource("TileSetScenesCollectionSource_l6uy8")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qy5rd"]
+scenes/1/scene = ExtResource("4_ltdxc")
+
+[sub_resource type="TileSet" id="TileSet_eckcg"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetScenesCollectionSource_qy5rd")
+
+[node name="TilemapRätsel" type="Node2D" node_paths=PackedStringArray("camera", "score_label", "time_label", "score_manager", "timer")]
+script = ExtResource("1_gmpml")
+camera = NodePath("Camera2D")
+score_label = NodePath("Camera2D/CanvasLayer/ScoreLabel")
+time_label = NodePath("Camera2D/CanvasLayer/TimeLabel")
+score_manager = NodePath("LocalScore")
+timer = NodePath("Camera2D/CanvasLayer/TimeLabel/Timer")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAJAAkAAQAAAAAAAQAJAAgAAQAAAAAACwAJAAcAAQAAAAAAAQAKAAgAAQAAAAAAAgAJAAYAAQAAAAAABQALAAgAAQAAAAAAAwALAAcAAQAAAAAAAQAKAAYAAQAAAAAAAgALAAYAAQAAAAAACAALAAUAAQAAAAAAAQAIAAgAAQAAAAAAAgAHAAgAAQAAAAAAAgAGAAgAAQAAAAAABgAGAAcAAQAAAAAAAQAGAAUAAQAAAAAAAQAGAAYAAQAAAAAAAQAGAAQAAQAAAAAACwAHAAQAAQAAAAAAAgAIAAQAAQAAAAAAAgALAAQAAQAAAAAACAAJAAQAAQAAAAAAAgAKAAQAAQAAAAAAAgAFAAQAAQAAAAAAAgAEAAQAAQAAAAAABgAEAAMAAQAAAAAABQAFAAMAAQAAAAAAAgAGAAMAAQAAAAAABwAHAAMAAQAAAAAAAwAHAAIAAQAAAAAABQAIAAIAAQAAAAAAAgALAAMAAQAAAAAAAQALAAIAAQAAAAAABAAKAAIAAQAAAAAAAgAJAAIAAQAAAAAACgAJAAEAAQAAAAAAAQAPABAAAQAAAAAABwAPABEAAQAAAAAAAQARABAAAQAAAAAABAARABEAAQAAAAAAAQAQABAAAQAAAAAAAgANABAAAQAAAAAABQAOABAAAQAAAAAAAgADABEAAQAAAAAAAQADABAAAQAAAAAACQADAA8AAQAAAAAAAQADAA4AAQAAAAAABQAEAA4AAQAAAAAAAgAFAA4AAQAAAAAAAgAGAA4AAQAAAAAAAgAHAA4AAQAAAAAAAgAIAA4AAQAAAAAAAgAJAA4AAQAAAAAACgAEABAAAQAAAAAAAgAFABAAAQAAAAAAAgABABQAAQAAAAAABQABABUAAQAAAAAAAQADABMAAQAAAAAAAQAEABQAAQAAAAAABwAEABUAAQAAAAAAAQAEABYAAQAAAAAACwAGABQAAQAAAAAABwAGABUAAQAAAAAAAQAPABMAAQAAAAAAAQAPABQAAQAAAAAACwAPABUAAQAAAAAAAQAPABYAAQAAAAAACwARABMAAQAAAAAAAQARABQAAQAAAAAACAARABUAAQAAAAAAAQABABYAAQAAAAAABgACABQAAQAAAAAAAgACABYAAQAAAAAAAgADABQAAQAAAAAACgADABYAAQAAAAAAAgAEABcAAQAAAAAAAQAFABQAAQAAAAAACgAFABYAAQAAAAAAAgAGABYAAQAAAAAACgAHABQAAQAAAAAAAgAHABYAAQAAAAAAAgAIABQAAQAAAAAAAgAIABYAAQAAAAAAAgAJABQAAQAAAAAAAgAJABYAAQAAAAAAAgAKABYAAQAAAAAAAgALABQAAQAAAAAACgALABYAAQAAAAAAAgAMABQAAQAAAAAAAgAMABYAAQAAAAAAAgANABQAAQAAAAAAAgANABYAAQAAAAAAAgAOABQAAQAAAAAAAgAOABYAAQAAAAAAAgAPABcAAQAAAAAAAQAQABQAAQAAAAAAAgAQABYAAQAAAAAAAgARABYAAQAAAAAAAwADABIAAQAAAAAAAQAFABMAAQAAAAAAAQAFABIAAQAAAAAABQAPABIAAQAAAAAAAQARABIAAQAAAAAAAQAIABAAAQAAAAAABwAIABEAAQAAAAAAAQAIABIAAQAAAAAACgAJABAAAQAAAAAAAgAJABIAAQAAAAAAAgANABEAAQAAAAAAAQANABIAAQAAAAAAAwAMABIAAQAAAAAAAgALABIAAQAAAAAACwAGABAAAQAAAAAAAgAHABAAAQAAAAAAAgAGABIAAQAAAAAAAgAHABIAAQAAAAAAAgAJAAAAAAAAAAAAAAAJAAwAAAAAAAAAAAAJAA0AAQAAAAAAAQD9/x4AAQAAAAAABQD9/x8AAQAAAAAAAQD9/yAAAQAAAAAACQD9/yEAAQAAAAAAAQD9/yIAAQAAAAAACQD9/yMAAQAAAAAAAQD9/yQAAQAAAAAAAQD9/yUAAQAAAAAAAQD9/yYAAQAAAAAAAQD9/ycAAQAAAAAAAQD9/ygAAQAAAAAACQD9/ykAAQAAAAAAAQD9/yoAAQAAAAAACQD9/ysAAQAAAAAAAQD9/ywAAQAAAAAAAQD9/y0AAQAAAAAAAQD//yoAAQAAAAAABwD//ysAAQAAAAAAAQD//ywAAQAAAAAAAQD//y0AAQAAAAAAAQD//y4AAQAAAAAACwACACAAAQAAAAAABAACACEAAQAAAAAAAQACACIAAQAAAAAACAACACMAAQAAAAAAAQACACQAAQAAAAAACQACACUAAQAAAAAAAQACACYAAQAAAAAAAQACACcAAQAAAAAAAQACACgAAQAAAAAACwACACkAAQAAAAAAAQACACoAAQAAAAAACAACACsAAQAAAAAAAQACACwAAQAAAAAACQACAC0AAQAAAAAAAQAFACYAAQAAAAAABQAFACcAAQAAAAAAAQAFACgAAQAAAAAACwAFACkAAQAAAAAAAQAFACoAAQAAAAAAAQAFACsAAQAAAAAAAQAIACgAAQAAAAAABAAIACkAAQAAAAAAAQAIACoAAQAAAAAACQAIACsAAQAAAAAAAQAIACwAAQAAAAAACAAIAC0AAQAAAAAAAQAIAC4AAQAAAAAACAAJAB4AAAAAAAAAAAAJAB8AAQAAAAAAAQAJACAAAQAAAAAAAQALACQAAQAAAAAABwALACUAAQAAAAAAAQALACYAAQAAAAAACwALACcAAQAAAAAAAQALACgAAQAAAAAAAQALACkAAQAAAAAAAQALACoAAQAAAAAACwALACsAAQAAAAAAAQALACwAAQAAAAAAAQALAC0AAQAAAAAAAQANACEAAQAAAAAABAANACIAAQAAAAAAAQANACMAAQAAAAAAAQAOACQAAQAAAAAABwAOACUAAQAAAAAAAQAOACYAAQAAAAAACwAOACcAAQAAAAAAAQAQACYAAQAAAAAABwAQACcAAQAAAAAAAQAQACgAAQAAAAAACwAQACkAAQAAAAAAAQARACoAAQAAAAAABwARACsAAQAAAAAAAQARACwAAQAAAAAAAQARAC0AAQAAAAAAAQASACgAAQAAAAAABwASACkAAQAAAAAAAQAUACYAAQAAAAAABwAUACcAAQAAAAAAAQAUACgAAQAAAAAAAQAUACkAAQAAAAAAAQAUACoAAQAAAAAACAAUACsAAQAAAAAACQAUACwAAQAAAAAAAQAUAC0AAQAAAAAAAQAUAC4AAQAAAAAACwAWAB4AAQAAAAAABAAWAB8AAQAAAAAAAQAWACAAAQAAAAAAAQAWACEAAQAAAAAAAQAWACIAAQAAAAAAAQAWACMAAQAAAAAAAQAWACQAAQAAAAAACAAWACUAAQAAAAAAAQAWACYAAQAAAAAACAAWACcAAQAAAAAAAQAWACgAAQAAAAAAAQAWACkAAQAAAAAAAQAWACoAAQAAAAAAAQAWACsAAQAAAAAACAAWACwAAQAAAAAAAQAWAC0AAQAAAAAAAQD9/y4AAQAAAAAABgD+/x4AAQAAAAAAAgD+/yAAAQAAAAAAAgD+/yIAAQAAAAAAAgD+/ygAAQAAAAAAAgD+/yoAAQAAAAAAAgD+/y4AAQAAAAAAAgD//x4AAQAAAAAAAgD//yAAAQAAAAAAAgD//yIAAQAAAAAAAgD//ygAAQAAAAAAAgD//y8AAQAAAAAAAQAAAB4AAQAAAAAAAgAAACAAAQAAAAAAAgAAACIAAQAAAAAAAgAAACgAAQAAAAAAAgAAACoAAQAAAAAAAgAAAC4AAQAAAAAAAgABAB4AAQAAAAAAAgABACAAAQAAAAAAAgABACIAAQAAAAAAAgABACgAAQAAAAAAAgABACoAAQAAAAAAAgABAC4AAQAAAAAAAgACAB4AAQAAAAAAAgACAC4AAQAAAAAACgADAB4AAQAAAAAAAgADACQAAQAAAAAAAgADACgAAQAAAAAAAgADACwAAQAAAAAAAgADAC4AAQAAAAAAAgAEAB4AAQAAAAAAAgAEACQAAQAAAAAAAgAEACgAAQAAAAAAAgAEACwAAQAAAAAAAgAEAC4AAQAAAAAAAgAFAB4AAQAAAAAAAgAFACQAAQAAAAAAAgAFACwAAQAAAAAACgAFAC4AAQAAAAAAAgAGAB4AAQAAAAAAAgAGACQAAQAAAAAAAgAGACYAAQAAAAAAAgAGACgAAQAAAAAAAgAGACwAAQAAAAAAAgAGAC4AAQAAAAAAAgAHAB4AAQAAAAAAAgAHACQAAQAAAAAAAgAHACYAAQAAAAAAAgAHACgAAQAAAAAAAgAHACwAAQAAAAAAAgAHAC4AAQAAAAAAAgAIAB4AAQAAAAAAAgAIACQAAQAAAAAAAgAIACYAAQAAAAAAAgAIAC8AAQAAAAAAAQAJACEAAQAAAAAABgAJACQAAQAAAAAAAgAJACYAAQAAAAAAAgAJACoAAQAAAAAAAgAKAB4AAQAAAAAAAgAKACEAAQAAAAAAAgAKACQAAQAAAAAAAgAKACYAAQAAAAAAAgAKACoAAQAAAAAAAgALAB4AAQAAAAAAAgALACEAAQAAAAAAAgALAC4AAQAAAAAABgAMAB4AAQAAAAAAAgAMACEAAQAAAAAAAgAMACQAAQAAAAAAAgAMACYAAQAAAAAAAgAMACoAAQAAAAAAAgAMAC4AAQAAAAAAAgANAB4AAQAAAAAAAgANACQAAQAAAAAACgANACYAAQAAAAAAAgANACoAAQAAAAAAAgANAC4AAQAAAAAAAgAOAB4AAQAAAAAAAgAOACgAAQAAAAAABgAOACoAAQAAAAAAAgAOAC4AAQAAAAAAAgAPAB4AAQAAAAAAAgAPACQAAQAAAAAAAgAPACYAAQAAAAAAAgAPACgAAQAAAAAAAgAPACoAAQAAAAAAAgAPAC4AAQAAAAAAAgAQAB4AAQAAAAAAAgAQACQAAQAAAAAAAgAQACoAAQAAAAAACgAQAC4AAQAAAAAAAgARAB4AAQAAAAAAAgARACQAAQAAAAAAAgARACYAAQAAAAAAAgARACgAAQAAAAAAAgARAC4AAQAAAAAACgASAB4AAQAAAAAAAgASACQAAQAAAAAAAgASACYAAQAAAAAAAgASACoAAQAAAAAACgASAC4AAQAAAAAAAgATAB4AAQAAAAAAAgATACQAAQAAAAAAAgATACYAAQAAAAAAAgATACoAAQAAAAAAAgATAC4AAQAAAAAAAgAUAB4AAQAAAAAAAgAUACQAAQAAAAAAAgAUAC8AAQAAAAAAAQAVAB4AAQAAAAAAAgAVACQAAQAAAAAAAgAVACYAAQAAAAAAAgAVACsAAQAAAAAAAgAVAC4AAQAAAAAAAgAWAC4AAQAAAAAAAwALAA8AAQAAAAAAAQALABAAAQAAAAAACAALABEAAQAAAAAAAQALABMAAQAAAAAAAQAKABAAAQAAAAAAAgAKABIAAQAAAAAAAgAKABQAAQAAAAAAAgAKAA4AAQAAAAAAAgALAA4AAQAAAAAACAALAA0AAQAAAAAAAQALAAwAAQAAAAAABAAKAAwAAQAAAAAAAgA=")
+tile_set = SubResource("TileSet_jwwgb")
+
+[node name="TileMapLayerTrash" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAKAAYAAAAAAAAAAQAJAAQAAAAAAAAAAQAEAAMAAAAAAAAAAQAGAAcAAAAAAAAAAQARABEAAAAAAAAAAQABABQAAAAAAAAAAQADAA8AAAAAAAAAAQAHABQAAAAAAAAAAQAIABEAAAAAAAAAAQAEABUAAAAAAAAAAQAPABUAAAAAAAAAAQARABUAAAAAAAAAAQD//yAAAAAAAAAAAQD//ywAAAAAAAAAAQABAC4AAAAAAAAAAQACACkAAAAAAAAAAQAFACoAAAAAAAAAAQAIACsAAAAAAAAAAQAMACQAAAAAAAAAAQANACYAAAAAAAAAAQASAC4AAAAAAAAAAQATACQAAAAAAAAAAQAVACYAAAAAAAAAAQAVACsAAAAAAAAAAQA=")
+tile_set = SubResource("TileSet_eckcg")
+
+[node name="Endzone1" parent="." node_paths=PackedStringArray("score_manager") instance=ExtResource("18_eckcg")]
+position = Vector2(608, 29)
+score_manager = NodePath("../LocalScore")
+
+[node name="OnePlayerLine" parent="." instance=ExtResource("2_ltdxc")]
+position = Vector2(608, 652)
+
+[node name="Endzone2" parent="." node_paths=PackedStringArray("score_manager") instance=ExtResource("18_eckcg")]
+position = Vector2(608, 799)
+score_manager = NodePath("../LocalScore")
+
+[node name="TwoPlayerLine1" parent="." instance=ExtResource("2_ltdxc")]
+position = Vector2(288, 1548)
+
+[node name="TwoPlayerLine2" parent="." instance=ExtResource("2_ltdxc")]
+position = Vector2(992, 1548)
+
+[node name="Endzone3" parent="." node_paths=PackedStringArray("score_manager") instance=ExtResource("18_eckcg")]
+position = Vector2(609, 1949)
+score_manager = NodePath("../LocalScore")
+
+[node name="ThreePlayerLine1" parent="." instance=ExtResource("2_ltdxc")]
+position = Vector2(-32, 3084)
+
+[node name="ThreePlayerLine2" parent="." instance=ExtResource("2_ltdxc")]
+position = Vector2(1312, 3084)
+
+[node name="ThreePlayerLine3" parent="." instance=ExtResource("2_ltdxc")]
+position = Vector2(544, 3084)
+
+[node name="LocalScore" type="Node" parent="."]
+script = ExtResource("17_eckcg")
+metadata/_custom_type_script = "uid://dynaqeo3d7ec8"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 2540)
+zoom = Vector2(0.58, 0.58)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="TimeLabel" type="Label" parent="Camera2D/CanvasLayer" node_paths=PackedStringArray("timer")]
+offset_left = 1166.0
+offset_top = 2.0
+offset_right = 1206.0
+offset_bottom = 25.0
+script = ExtResource("19_ilc1d")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Camera2D/CanvasLayer/TimeLabel"]
+one_shot = true
+
+[node name="ScoreLabel" type="Label" parent="Camera2D/CanvasLayer" node_paths=PackedStringArray("score_manager")]
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 241.0
+offset_bottom = 68.0
+script = ExtResource("1_aubpr")
+score_manager = NodePath("../../../LocalScore")
+
+[connection signal="timeout" from="Camera2D/CanvasLayer/TimeLabel/Timer" to="." method="_on_timer_timeout"]

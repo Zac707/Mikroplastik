@@ -1,0 +1,175 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1t0aainvkkhq"]
+
+[ext_resource type="Theme" uid="uid://bnulr8mt2rien" path="res://minigame_triggering/styles/default_minigame_intro_theme.tres" id="1_w5vq2"]
+[ext_resource type="Script" uid="uid://dekjqxgp8te1y" path="res://general_scripts/exchange_texture_group.gd" id="2_a2iqk"]
+[ext_resource type="Texture2D" uid="uid://dxin4nv02thi5" path="res://minigame_triggering/textures/star_128p_empty.svg" id="3_5d5h0"]
+[ext_resource type="Texture2D" uid="uid://d0gcl08m6y74m" path="res://minigame_triggering/textures/star_128p_filled.svg" id="3_a2iqk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttefo"]
+bg_color = Color(0, 0, 0, 0.12549)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pha74"]
+font_size = 32
+font_color = Color(0.0728426, 0.0728426, 0.0728426, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rqxrj"]
+font_size = 24
+font_color = Color(0.194349, 0.194349, 0.194349, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qrvd7"]
+line_spacing = 4.0
+font_size = 12
+font_color = Color(0.262932, 0.262932, 0.262932, 1)
+
+[node name="ResultsPanelPrefab" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 100
+
+[node name="BackgroundBlocker" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="BackgroundBlocker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.263636
+anchor_top = -0.3
+anchor_right = 1.26023
+anchor_bottom = 1.32083
+offset_left = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ttefo")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme = ExtResource("1_w5vq2")
+
+[node name="TitleLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.215909
+anchor_top = 0.0416667
+anchor_right = 0.784091
+anchor_bottom = 0.135417
+grow_horizontal = 2
+text = "Minigame Name"
+label_settings = SubResource("LabelSettings_pha74")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreControl" type="Control" parent="Panel"]
+layout_mode = 1
+anchor_left = 0.102083
+anchor_top = 0.188462
+anchor_right = 0.442708
+anchor_bottom = 0.382692
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HeaderLabel" type="Label" parent="Panel/ScoreControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme = ExtResource("1_w5vq2")
+text = "Score"
+label_settings = SubResource("LabelSettings_rqxrj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarTextureGroup" type="HBoxContainer" parent="Panel/ScoreControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.391667
+anchor_right = 0.999166
+anchor_bottom = 1.00833
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+script = ExtResource("2_a2iqk")
+active_tex = ExtResource("3_a2iqk")
+inactive_tex = ExtResource("3_5d5h0")
+metadata/_edit_use_anchors_ = true
+
+[node name="StarRect" type="TextureRect" parent="Panel/ScoreControl/StarTextureGroup"]
+layout_mode = 2
+texture = ExtResource("3_5d5h0")
+expand_mode = 3
+
+[node name="StarRect2" type="TextureRect" parent="Panel/ScoreControl/StarTextureGroup"]
+layout_mode = 2
+texture = ExtResource("3_5d5h0")
+expand_mode = 3
+
+[node name="StarRect3" type="TextureRect" parent="Panel/ScoreControl/StarTextureGroup"]
+layout_mode = 2
+texture = ExtResource("3_5d5h0")
+expand_mode = 3
+
+[node name="HighlightPicture" type="TextureRect" parent="Panel"]
+layout_mode = 0
+anchor_left = 0.102083
+anchor_top = 0.442308
+anchor_right = 0.4375
+anchor_bottom = 0.823077
+expand_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoControl" type="Control" parent="Panel"]
+layout_mode = 1
+anchor_left = 0.554545
+anchor_top = 0.1875
+anchor_right = 0.895455
+anchor_bottom = 0.8125
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HeaderLabel" type="Label" parent="Panel/InfoControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme = ExtResource("1_w5vq2")
+text = "Info"
+label_settings = SubResource("LabelSettings_rqxrj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContentLabel" type="Label" parent="Panel/InfoControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.14
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hier kommt eine reine Test-Erklärung des Minigames, für mehr muss das intro panel hier als prefab child scene mit Editable Children verwendet werden, s. https://docs.godotengine.org/en/3.1/getting_started/editor/unity_to_godot.html#where-are-my-prefabs"
+label_settings = SubResource("LabelSettings_qrvd7")
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ConfirmButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -72.0
+offset_right = 23.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_w5vq2")
+text = "OK"

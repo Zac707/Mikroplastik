@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2cpvwncn56uj"]
+
+[ext_resource type="PackedScene" uid="uid://ce6sxhs3bvoyp" path="res://angel_prototyp/scenes/fishable_objects/fishable_object_1x1.tscn" id="1_uc33f"]
+[ext_resource type="Resource" uid="uid://c0sr27pdbniwl" path="res://minigame_setups/riddle_setup.tres" id="2_j3ber"]
+[ext_resource type="Texture2D" uid="uid://ci3ag2bgid1sb" path="res://angel_prototyp/assets new/tüte.png" id="3_d5ags"]
+[ext_resource type="Texture2D" uid="uid://d2coy383wbl3v" path="res://angel_prototyp/assets new/tüte2.png" id="4_n2wlh"]
+[ext_resource type="Texture2D" uid="uid://ldn2ekope5b0" path="res://angel_prototyp/assets new/tüte3.png" id="5_sn6yd"]
+
+[node name="FishableBag 1x1" instance=ExtResource("1_uc33f")]
+minigame = ExtResource("2_j3ber")
+decay_level_sprites = Array[Texture]([ExtResource("3_d5ags"), ExtResource("4_n2wlh"), ExtResource("5_sn6yd")])
+
+[node name="ObjectSprite" parent="." index="0"]
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("3_d5ags")
+region_enabled = false

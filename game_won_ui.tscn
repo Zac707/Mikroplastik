@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfoyb5rgaxmu2"]
+
+[ext_resource type="Script" uid="uid://b5dmcrbio2pw5" path="res://general_scripts/game_won_ui.gd" id="1_3me5k"]
+[ext_resource type="Theme" uid="uid://bnulr8mt2rien" path="res://minigame_triggering/styles/default_minigame_intro_theme.tres" id="2_npwje"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhjmy"]
+bg_color = Color(0.340339, 0.340339, 0.340339, 0.458824)
+
+[sub_resource type="LabelSettings" id="LabelSettings_osvmu"]
+font_size = 50
+font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+
+[node name="GameWonUI" type="Control"]
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3me5k")
+
+[node name="BackgroundCover" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uhjmy")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -200.0
+offset_right = 400.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_npwje")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.5
+offset_top = 20.0
+offset_right = 142.5
+offset_bottom = 89.0
+grow_horizontal = 2
+text = "Spiel gewonnen!"
+label_settings = SubResource("LabelSettings_osvmu")
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -64.0
+offset_right = 51.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_npwje")
+text = "Neu Starten"

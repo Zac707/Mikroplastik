@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BaseMinigameSetup" load_steps=3 format=3 uid="uid://cokh3p56w1btj"]
+
+[ext_resource type="Script" uid="uid://r3cnmfn46ky1" path="res://minigame_triggering/scripts/minigame_resource/base_minigame_setup.gd" id="1_emcui"]
+[ext_resource type="PackedScene" uid="uid://bcfoq7hrcjocs" path="res://Odd_one_out/scenes/odd_one_out.tscn" id="2_emcui"]
+
+[resource]
+script = ExtResource("1_emcui")
+source_scene = ExtResource("2_emcui")
+title = "Odd One Out"
+intro_description = "Suche das Plastik aus der Masse an Biomüll heraus, um Punkte zu sammeln!"
+plastic_facts = Array[String]([])
+metadata/_custom_type_script = "uid://r3cnmfn46ky1"

@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://dw7xcweoligru"]
+
+[ext_resource type="PackedScene" uid="uid://cxyevch6l7tes" path="res://sand_search/Scenes/Lupe.tscn" id="1_bbxxq"]
+[ext_resource type="Script" uid="uid://lhkcjuerdbpr" path="res://sand_search/Scripts/sand_main.gd" id="1_wts6q"]
+[ext_resource type="PackedScene" uid="uid://dtnm6h0eok5f1" path="res://sand_search/Scenes/list.tscn" id="2_2lm1r"]
+[ext_resource type="Script" uid="uid://c1xg3nbfg4qlr" path="res://Mikroplastik werfen/Scripts/timer_label.gd" id="5_go8c1"]
+[ext_resource type="Texture2D" uid="uid://b70pykbskji5w" path="res://sand_search/Sprites/desert-2042738.jpg" id="6_a2awf"]
+[ext_resource type="Script" uid="uid://dynaqeo3d7ec8" path="res://local_score.gd" id="7_a2awf"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("magnifying_glasses", "List", "Camera", "Timer_Label", "score_manager", "timer")]
+script = ExtResource("1_wts6q")
+magnifying_glasses = [NodePath("Griff3"), NodePath("Griff2"), NodePath("Griff")]
+List = NodePath("Camera2D/CanvasLayer/Control")
+Camera = NodePath("Camera2D")
+Timer_Label = NodePath("Camera2D/CanvasLayer/TimerLabel")
+score_manager = NodePath("LocalScore")
+timer = NodePath("Camera2D/CanvasLayer/TimerLabel/Timer")
+
+[node name="Griff3" parent="." node_paths=PackedStringArray("List", "score_manager") instance=ExtResource("1_bbxxq")]
+List = NodePath("../Camera2D/CanvasLayer/Control")
+score_manager = NodePath("../LocalScore")
+
+[node name="Griff2" parent="." node_paths=PackedStringArray("List", "score_manager") instance=ExtResource("1_bbxxq")]
+position = Vector2(300, 0)
+List = NodePath("../Camera2D/CanvasLayer/Control")
+score_manager = NodePath("../LocalScore")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Control" parent="Camera2D/CanvasLayer" instance=ExtResource("2_2lm1r")]
+modulate = Color(0, 0, 0, 1)
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 190.0
+offset_bottom = 114.0
+
+[node name="TimerLabel" type="Label" parent="Camera2D/CanvasLayer" node_paths=PackedStringArray("timer")]
+modulate = Color(0, 0, 0, 1)
+offset_left = 1200.0
+offset_right = 1285.0
+offset_bottom = 23.0
+script = ExtResource("5_go8c1")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Camera2D/CanvasLayer/TimerLabel"]
+one_shot = true
+
+[node name="Griff" parent="." node_paths=PackedStringArray("List", "score_manager") instance=ExtResource("1_bbxxq")]
+position = Vector2(-300, 0)
+List = NodePath("../Camera2D/CanvasLayer/Control")
+score_manager = NodePath("../LocalScore")
+
+[node name="Proxy-image" type="Sprite2D" parent="."]
+z_index = -2
+texture = ExtResource("6_a2awf")
+
+[node name="LocalScore" type="Node" parent="."]
+script = ExtResource("7_a2awf")
+metadata/_custom_type_script = "uid://dynaqeo3d7ec8"
+
+[connection signal="timeout" from="Camera2D/CanvasLayer/TimerLabel/Timer" to="Camera2D/CanvasLayer/TimerLabel/Timer" method="_on_timeout"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp51brwbn0gi0"]
+
+[ext_resource type="Script" uid="uid://de5jjjrf6514k" path="res://Slither_Plastik/Scripts/joystick_2.gd" id="1_sjk5s"]
+[ext_resource type="Texture2D" uid="uid://khb4exr6cumf" path="res://Slither_Plastik/Sprites/joystick_backg.png" id="1_vxjf5"]
+[ext_resource type="Texture2D" uid="uid://rqjgy2ua07ra" path="res://Slither_Plastik/Sprites/joystick.png" id="3_sqwhl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16p6r"]
+radius = 21.0238
+
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("_touch_area", "joystick")]
+script = ExtResource("1_sjk5s")
+_touch_area = NodePath(".")
+_also_check_mouse_input = true
+joystick = NodePath("Joystick")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_16p6r")
+
+[node name="stick" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("3_sqwhl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Joystick" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("1_vxjf5")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

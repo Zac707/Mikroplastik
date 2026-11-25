@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq8bnr8gmim0d"]
+
+[ext_resource type="Texture2D" uid="uid://cp6k6cq3tolcj" path="res://Slither_Plastik/Sprites/Plastic_Worm.png" id="1_cbpys"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_umoor"]
+radius = 8.0
+
+[node name="Plastic" type="Area2D" groups=["Plastic_Worm"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_umoor")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cbpys")

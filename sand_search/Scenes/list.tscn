@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtnm6h0eok5f1"]
+
+[ext_resource type="Script" uid="uid://bnd32y4xecmn5" path="res://sand_search/Scripts/microplastic_list.gd" id="1_fjmaj"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("text_label") groups=["Microplastic_list"]]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -450.0
+offset_bottom = -246.0
+script = ExtResource("1_fjmaj")
+text_label = NodePath("Label")
+sample_dictionary = {
+"Plastik 1": 2,
+"Plastik 2": 1,
+"Plastik 3": 2
+}
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

@@ -1,0 +1,19 @@
+
+What do about Highlight pic in results panel?
+
+
+Angeln:
+- Haken Kollision mit Objekt hängt den Haken da rein
+- Button neben/an der Winde, was den Haken (in einem Bogen mit Drop shadow) zurück zur Küste zieht
+- dabei kann er nicht an einem neuen Objekt hängen bleiben
+- damit zieht man dann geangelte Objekte zurück, Minigame fängt an wenn es an der Küste landet
+- wenn an dem Objekt mehrere Spieler hängen, müssen sie gleichzeitig ihren Knopf gedrückt haben
+
+- keine Grid-Pfütze, sondern das gesamte Becken hat einen Verschmutzungsgrad
+- Performance im Minigame füllt die globale Punkteleiste
+- die Leiste hat Thresholds, wo Clean-up Crews kommen und den Verschmutzungsgrad reduzieren
+- 2 Game Over states: 1. alle Grid Cells gefüllt, 2. Verschmutzungsgrad zu hoch
+
+
+Weiter: 
+	Testen ob angeln mit mehreren Leuten geht und schauen was dabei alles kaputt geht

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bff7h28e34wo4"]
+
+[ext_resource type="Script" uid="uid://cmj4ko3gsehrr" path="res://minigame_triggering/scripts/intro_panel/intro_panel_default.gd" id="1_2dwfq"]
+[ext_resource type="PackedScene" uid="uid://yw1ibekrk4xt" path="res://minigame_triggering/scenes/intro_panel_prefab.tscn" id="2_jcefp"]
+
+[node name="IntroPanelDefault" type="Control" node_paths=PackedStringArray("player_nr_group", "title_label", "info_label", "start_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2dwfq")
+player_nr_group = NodePath("IntroPanelPrefab/Panel/PlayerNrControl/PlayerNrButtonGroup")
+title_label = NodePath("IntroPanelPrefab/Panel/TitleLabel")
+info_label = NodePath("IntroPanelPrefab/Panel/InfoControl/ContentLabel")
+start_button = NodePath("IntroPanelPrefab/Panel/StartButton")
+use_minigame_setup_text = false
+
+[node name="IntroPanelPrefab" parent="." instance=ExtResource("2_jcefp")]
+layout_mode = 1
+
+[node name="TitleLabel" parent="IntroPanelPrefab/Panel" index="0"]
+text = "Plastik Schleudern"
+
+[node name="ContentLabel" parent="IntroPanelPrefab/Panel/InfoControl" index="1"]
+text = "Plastik schleudern macht Spaß, weil Plastik ist immer auch Mikroplastik, eindeutig."
+
+[editable path="IntroPanelPrefab"]

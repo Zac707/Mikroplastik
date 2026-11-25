@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BaseMinigameSetup" load_steps=3 format=3 uid="uid://6w2icbyrj1i0"]
+
+[ext_resource type="Script" uid="uid://r3cnmfn46ky1" path="res://minigame_triggering/scripts/minigame_resource/base_minigame_setup.gd" id="1_aunke"]
+[ext_resource type="PackedScene" uid="uid://dw7xcweoligru" path="res://sand_search/Scenes/sand_main.tscn" id="2_aunke"]
+
+[resource]
+script = ExtResource("1_aunke")
+source_scene = ExtResource("2_aunke")
+title = "Sand-Suche"
+intro_description = "Finde Teile von Mikroplastik im Sand!"
+plastic_facts = Array[String]([])
+metadata/_custom_type_script = "uid://r3cnmfn46ky1"

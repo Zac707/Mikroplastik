@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://btfq5vses2g4e"]
+
+[ext_resource type="Texture2D" uid="uid://cr0cuwxjbaqqb" path="res://angel_prototyp/assets new/oval_gradient.png" id="1_u7mak"]
+[ext_resource type="Script" uid="uid://br4vndvmyclxo" path="res://puddle_visual.gd" id="2_4qbx7"]
+
+[node name="Puddle" type="Sprite2D"]
+modulate = Color(0.52476, 0.310957, 0.142047, 0.541176)
+z_index = -1
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_u7mak")
+script = ExtResource("2_4qbx7")

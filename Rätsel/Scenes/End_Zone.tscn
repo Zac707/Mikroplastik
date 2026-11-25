@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://rtexg32e1nhc"]
+
+[ext_resource type="Script" uid="uid://bkuons2hol6ij" path="res://Rätsel/Scripts/end_zone.gd" id="1_tjol3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ganm3"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_tjol3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_ganm3")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbne0158l2lh7"]
+
+[ext_resource type="Shader" uid="uid://bug4e6111urh7" path="res://Rätsel/shader/Trash_grey.gdshader" id="1_5kurj"]
+[ext_resource type="Texture2D" uid="uid://nifyasye8wr6" path="res://Rätsel/Assets/müllbeutel.png" id="1_psgiy"]
+[ext_resource type="Script" uid="uid://bdy7hn0iv5c1j" path="res://Rätsel/Scripts/trash_pickup.gd" id="2_47u3t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47u3t"]
+radius = 38.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q264u"]
+shader = ExtResource("1_5kurj")
+
+[node name="TrashCollectible" type="Area2D" node_paths=PackedStringArray("trash") groups=["points_emitter"]]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("2_47u3t")
+trash = NodePath("Müllbeutel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_47u3t")
+
+[node name="Müllbeutel" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_q264u")
+texture = ExtResource("1_psgiy")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

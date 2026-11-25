@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc74j8e6js51e"]
+
+[ext_resource type="Script" uid="uid://dchccoutsobs8" path="res://Odd_one_out/scripts/Plastik_Müll_Movement.gd" id="1_x1l8m"]
+[ext_resource type="Texture2D" uid="uid://b3slfvj61ku7l" path="res://Odd_one_out/sprites/odd one out plastic.png" id="2_vom81"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_md34n"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vom81"]
+radius = 35.7
+
+[node name="RigidBody2D" type="RigidBody2D" node_paths=PackedStringArray("button")]
+z_index = -5
+collision_mask = 2
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_md34n")
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_x1l8m")
+button = NodePath("TouchArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -2.6226e-06)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("2_vom81")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -2)
+shape = SubResource("CircleShape2D_vom81")
+
+[node name="TouchArea" type="TextureButton" parent="."]
+offset_left = -28.0
+offset_top = -46.0
+offset_right = 32.0
+offset_bottom = 54.0
+action_mode = 0

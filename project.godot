@@ -1,0 +1,62 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="mikroplastik2025"
+run/main_scene="uid://d2gd7sam4qdmm"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+ScoreManager="*res://Mikroplastik werfen/Scripts/Score_Manager.gd"
+Enums="*res://general_scripts/global_enums.gd"
+GlobalList="*res://sand_search/Scripts/global_list.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/mode=3
+window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/radial_progress/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://general_scripts/": "green",
+"res://minigame_setups/": "red",
+"res://minigame_triggering/": "orange",
+"res://minigame_triggering/scenes/": "red",
+"res://minigame_triggering/scripts/": "blue",
+"res://minigame_triggering/textures/": "teal"
+}
+
+[global_group]
+
+Plastic_Worm=""
+Wall_Worm=""
+Food_Worm=""
+Worked_Ground=""
+Lupe=""
+Plastic_sand=""
+Plastic_sand_hitbox=""
+Microplastic_list=""
+"Line_Rätsel"=""
+points_emitter=""
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_repeat=1

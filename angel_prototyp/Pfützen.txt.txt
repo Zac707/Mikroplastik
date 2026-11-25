@@ -1,0 +1,10 @@
+Becken hat globalen Verschmutzungsgrad
+Wird erhöht wenn ein Objekt in einen höheren Verfall übergeht
+Farbe/Schattierung wird mit Verschmutzungsgrad geändert
+
+
+Rein visuell haben Objekte eine Mikroplastik-Pfütze
+Ist ein runter, leicht perspektiv verzogener Gradient Sprite dessen alpha nach außen sinkt
+Solange das Objekt noch in der Cell ist wird die Pfütze mit Verfallsgrad größer, aber nicht 
+weniger Intensiv
+Wenn das Objekt weg ist wird die Pfütze langsam größer und weniger intensiv

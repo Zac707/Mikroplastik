@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://g2paoittrffy"]
+
+[ext_resource type="Script" uid="uid://4xuxdtsx8vpi" path="res://Mikroplastik werfen/Scripts/Trash_can.gd" id="1_lruu0"]
+[ext_resource type="Texture2D" uid="uid://ce58gi0p7jf6w" path="res://Mikroplastik werfen/Sprites/trashcan_PE_entrance.png" id="2_gqbo2"]
+[ext_resource type="Texture2D" uid="uid://co3v33wibcmkj" path="res://Mikroplastik werfen/Sprites/trascan_PE_front.png" id="3_5tigg"]
+[ext_resource type="Texture2D" uid="uid://dr8lgw0utlrff" path="res://Mikroplastik werfen/Sprites/trashcan_PP_entrance.png" id="4_2lkhq"]
+[ext_resource type="Texture2D" uid="uid://dntjwnnw323dd" path="res://Mikroplastik werfen/Sprites/trashcan_PP_front.png" id="5_auyvs"]
+[ext_resource type="Texture2D" uid="uid://b4w4aei7r3lxe" path="res://Mikroplastik werfen/Sprites/trashcan_PET_entrance.png" id="6_ua43c"]
+[ext_resource type="Texture2D" uid="uid://bfvmafaw78fhi" path="res://Mikroplastik werfen/Sprites/trashcan_PET_front.png" id="7_yaxe2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1x1q"]
+size = Vector2(76, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owolk"]
+size = Vector2(9.25, 34.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx2d3"]
+size = Vector2(52.5, 4.5)
+
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("PP", "PE", "PET")]
+script = ExtResource("1_lruu0")
+PP = NodePath("PP_trash")
+PE = NodePath("PE_trash")
+PET = NodePath("PET_trash")
+
+[node name="PE_trash" type="Node2D" parent="."]
+
+[node name="PE_trash_entrance" type="Sprite2D" parent="PE_trash"]
+texture = ExtResource("2_gqbo2")
+
+[node name="PE_trash_front" type="Sprite2D" parent="PE_trash"]
+z_index = 1
+texture = ExtResource("3_5tigg")
+
+[node name="PP_trash" type="Node2D" parent="."]
+
+[node name="PP_trash_entrance" type="Sprite2D" parent="PP_trash"]
+texture = ExtResource("4_2lkhq")
+
+[node name="PP_trash_front" type="Sprite2D" parent="PP_trash"]
+z_index = 1
+texture = ExtResource("5_auyvs")
+
+[node name="PET_trash" type="Node2D" parent="."]
+
+[node name="PET_trash_entrance" type="Sprite2D" parent="PET_trash"]
+texture = ExtResource("6_ua43c")
+
+[node name="PET_trash_front" type="Sprite2D" parent="PET_trash"]
+z_index = 1
+texture = ExtResource("7_yaxe2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_f1x1q")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-43, -36)
+shape = SubResource("RectangleShape2D_owolk")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(43, -36)
+shape = SubResource("RectangleShape2D_owolk")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(43, -27)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_sx2d3")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-43, -27)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_sx2d3")
+one_way_collision = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

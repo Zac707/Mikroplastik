@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BaseMinigameSetup" load_steps=3 format=3 uid="uid://ssxjji4xxto2"]
+
+[ext_resource type="Script" uid="uid://r3cnmfn46ky1" path="res://minigame_triggering/scripts/minigame_resource/base_minigame_setup.gd" id="1_5ksxm"]
+[ext_resource type="PackedScene" uid="uid://b8urp6k3uw4jl" path="res://Mikroplastik werfen/Scenes/slingshot_main.tscn" id="2_pmvi2"]
+
+[resource]
+script = ExtResource("1_5ksxm")
+source_scene = ExtResource("2_pmvi2")
+title = "Plastik Werfen"
+intro_description = "Schieße das richtige Plastik in den entsprechenden Mülleimer, um Punkte zu sammeln!"
+plastic_facts = Array[String]([])
+metadata/_custom_type_script = "uid://r3cnmfn46ky1"
